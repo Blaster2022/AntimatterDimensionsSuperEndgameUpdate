@@ -39,7 +39,14 @@ export const ra = {
       requiredUnlock: () => Ra.unlocks.vUnlock,
       rawMemoryChunksPerSecond: () => 4 * Decimal.pow(Currency.infinityPower.value.add(1).pLog10().div(1e6), 1.875).toNumber(),
       memoryProductionMultiplier: () => Ra.unlocks.vXP.effectOrDefault(1)
-    }
+    },
+    id: "ra",
+    name: "Ra",
+    color: "#9575cd",
+    chunkGain: "Dimension Boosts",
+    memoryGain: "Galaxies",
+    rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3),
+    memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
   },
   unlocks: {
     autoTP: {
