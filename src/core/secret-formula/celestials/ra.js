@@ -47,7 +47,7 @@ export const ra = {
       chunkGain: "Dimension Boosts",
       memoryGain: "galaxies",
       rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3).toNumber(),
-      memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
+      //memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
     },
   },
   unlocks: {
