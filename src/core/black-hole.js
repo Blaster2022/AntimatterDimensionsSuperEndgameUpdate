@@ -38,7 +38,7 @@ class BlackHoleUpgradeState {
     const bh = BlackHole(this.id);
     const beforeProg = bh.isCharged ? 1 - bh.stateProgress : bh.stateProgress;
 
-    Pelle.isDoomed ? Currency.realityShards.gte(this.cost) : Currency.realityMachines.purchase(this.cost);
+    Pelle.isDoomed ? Currency.realityShards.purchase(this.cost) : Currency.realityMachines.purchase(this.cost);
     this.incrementAmount();
     this._lazyValue.invalidate();
     this._lazyCost.invalidate();
@@ -537,7 +537,7 @@ export const BlackHoles = {
     const activePeriods = this.realTimePeriodsWithBlackHoleActive(realTime);
     const effectivePeriods = [];
     for (let i = 0; i < activePeriods.length - 1; i++) {
-      effectivePeriods.push(new Decimal(activePeriods[i]).sub(activePeriods[i + 1]));
+      effectivePeriods.push(new Decimal(activePeriods[i]).sub(activePeriods[i + 1]).clampMin(0));
     }
     effectivePeriods.push(activePeriods.last());
     return effectivePeriods;
