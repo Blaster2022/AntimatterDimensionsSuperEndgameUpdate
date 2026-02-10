@@ -49,6 +49,24 @@ export const ra = {
       rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3).toNumber(),
       //memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
     },
+    /*laitela: {
+      id: "ra",
+      name: "Ra",
+      color: "#9575cd",
+      chunkGain: "Dimension Boosts",
+      memoryGain: "galaxies",
+      rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3).toNumber(),
+      //memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
+    },
+    pelle: {
+      id: "ra",
+      name: "Ra",
+      color: "#9575cd",
+      chunkGain: "Dimension Boosts",
+      memoryGain: "galaxies",
+      rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3).toNumber(),
+      //memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
+    }*/
   },
   unlocks: {
     autoTP: {
