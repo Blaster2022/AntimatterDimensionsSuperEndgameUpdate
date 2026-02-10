@@ -47,26 +47,26 @@ export const ra = {
       chunkGain: "Dimension Boosts",
       memoryGain: "galaxies",
       rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3).toNumber(),
-      //memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
+      memoryProductionMultiplier: () => 1//Ra.unlocks.raXP.effectOrDefault(1)
     },
-    /*laitela: {
-      id: "ra",
-      name: "Ra",
-      color: "#9575cd",
-      chunkGain: "Dimension Boosts",
-      memoryGain: "galaxies",
-      rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3).toNumber(),
-      //memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
+    laitela: {
+      id: "laitela",
+      name: "Lai'tela",
+      color: "white",
+      chunkGain: "Dark Matter",
+      memoryGain: "Singularities",
+      rawMemoryChunksPerSecond: () => 4 * Decimal.pow(player.celestials.laitela.darkMatter.add(1).pLog10().div(100), 4).toNumber(),
+      memoryProductionMultiplier: () => 1//Ra.unlocks.laitelaXP.effectOrDefault(1)
     },
     pelle: {
-      id: "ra",
-      name: "Ra",
-      color: "#9575cd",
-      chunkGain: "Dimension Boosts",
-      memoryGain: "galaxies",
-      rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3).toNumber(),
-      //memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
-    }*/
+      id: "pelle",
+      name: "Pelle",
+      color: "crimson",
+      chunkGain: "Celestial Points",
+      memoryGain: "Celestial Matter",
+      rawMemoryChunksPerSecond: () => 4 * Decimal.pow(player.endgame.celestialPoints.add(1).pLog10().div(10), 6).toNumber(),
+      memoryProductionMultiplier: () => 1//Ra.unlocks.pelleXP.effectOrDefault(1)
+    }
   },
   unlocks: {
     autoTP: {
