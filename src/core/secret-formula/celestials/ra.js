@@ -576,5 +576,13 @@ export const ra = {
       displayIcon: `<span class="fas fa-infinity"></span>`,
       disabledByPelle: false
     },
+    freeDimBoosts: {
+      id: 56,
+      reward: "Gain free dimension boosts in Ra's Reality",
+      pet: "ra",
+      level: 1,
+      displayIcon: "֍",
+      disabledByPelle: false
+    },
   }
 };
