@@ -56,6 +56,30 @@ export default {
           const triadCount = Ra.unlocks.unlockHardV.effectOrDefault(0);
           return `You have unlocked ${quantifyInt("Triad Study", triadCount)}.`;
         },
+      },
+      {
+        pet: Ra.pets.ra,
+        scalingUpgradeVisible: () => false,
+        scalingUpgradeText: () => {
+          const triadCount = Ra.unlocks.unlockHardV.effectOrDefault(0);
+          return `You have unlocked ${quantifyInt("Triad Study", triadCount)}.`;
+        },
+      },
+      {
+        pet: Ra.pets.laitela,
+        scalingUpgradeVisible: () => false,
+        scalingUpgradeText: () => {
+          const triadCount = Ra.unlocks.unlockHardV.effectOrDefault(0);
+          return `You have unlocked ${quantifyInt("Triad Study", triadCount)}.`;
+        },
+      },
+      {
+        pet: Ra.pets.pelle,
+        scalingUpgradeVisible: () => false,
+        scalingUpgradeText: () => {
+          const triadCount = Ra.unlocks.unlockHardV.effectOrDefault(0);
+          return `You have unlocked ${quantifyInt("Triad Study", triadCount)}.`;
+        },
       }
     ],
     petStyle() {
