@@ -46,7 +46,7 @@ export const ra = {
       color: "#9575cd",
       chunkGain: "Dimension Boosts",
       memoryGain: "galaxies",
-      requiredUnlock: () => player.endgame.celestialPoints.gte(1e90),
+      requiredUnlock: () => Ra.unlocks.achievementMultPower,
       rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3).toNumber(),
       memoryProductionMultiplier: () => 1//Ra.unlocks.raXP.effectOrDefault(1)
     },
@@ -518,7 +518,7 @@ export const ra = {
     },
     achievementMultPower: {
       id: 49,
-      reward: "Gain a power to Achievement Multiplier based on V Level",
+      reward: "Gain a power to Achievement Multiplier based on V Level and unlock Ra's memories",
       effect: () => 1 + Math.floor(Ra.pets.v.level) / 100,
       pet: "v",
       level: 30,
