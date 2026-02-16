@@ -588,13 +588,13 @@ export const ra = {
       disabledByPelle: false,
     },
     moreFreeDimBoosts: {
-     id: 57,
-     reward: "Gain more dimension boosts in Ra's Reality based on Celestial Points.",
-     effect: Decimal.log10(Decimal.log10(player.endgame.celestialPoints.add(1)).add(1)).add(1),
-     pet: "ra",
-     level: 2,
-     displayIcon: "֍",
-     displayedByPelle: false,
+      id: 57,
+      reward: "Gain more dimension boosts in Ra's Reality based on Celestial Points",
+      effect: () => Decimal.log10(Decimal.log10(player.endgame.celestialPoints.add(1)).add(1)).add(1),
+      pet: "ra",
+      level: 2,
+      displayIcon: "֍",
+      disabledByPelle: false,
     },
   }
 };
