@@ -157,7 +157,7 @@ export class DimBoost {
   static get imaginaryBoosts() {
     return (Ra.isRunning && !Ra.unlocks.freeDimBoosts.canBeApplied)
       ? DC.D0
-      : new Decimal(ImaginaryUpgrade(12).effectOrDefault(0) * ImaginaryUpgrade(23).effectOrDefault(1));
+      : Decimal.pow(ImaginaryUpgrade(12).effectOrDefault(0) * ImaginaryUpgrade(23).effectOrDefault(1), Ra.unlocks.moreFreeDimBoosts.effectOrDefault(1));
   }
 
   static get totalBoosts() {
