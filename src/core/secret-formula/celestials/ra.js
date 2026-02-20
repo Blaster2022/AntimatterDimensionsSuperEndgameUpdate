@@ -602,7 +602,7 @@ export const ra = {
       effect: () => Math.pow(player.galaxies.div(1e5).toNumber(), 0.2),
       pet: "ra",
       level: 5,
-      displayIcon: `<span class="fas fa-battle-net"></span>`,
+      displayIcon: `<span class="fab fa-battle-net"></span>`,
       disabledByPelle: false,
     }
   }
