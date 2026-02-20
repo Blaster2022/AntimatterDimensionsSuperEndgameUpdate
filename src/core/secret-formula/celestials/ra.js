@@ -596,5 +596,13 @@ export const ra = {
       displayIcon: "֍",
       disabledByPelle: false,
     },
+    raXP: {
+      id: 58,
+      reward: "All Memory Chunks produce more Memories based on Antimatter Galaxies",
+      effect: () => Math.pow(player.galaxies.div(1e5).toNumber(), 0.2),
+      pet: "ra",
+      level: 5,
+      displayIcon: `<span class="fas-fa-battle-net"></span>`,
+      disabledByPelle: false,
   }
 };
