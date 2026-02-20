@@ -48,7 +48,7 @@ export const ra = {
       memoryGain: "galaxies",
       requiredUnlock: () => Ra.unlocks.achievementMultPower,
       rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3).toNumber(),
-      memoryProductionMultiplier: () => 1//Ra.unlocks.raXP.effectOrDefault(1)
+      memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
     },
     laitela: {
       id: "laitela",
@@ -604,5 +604,6 @@ export const ra = {
       level: 5,
       displayIcon: `<span class="fas-fa-battle-net"></span>`,
       disabledByPelle: false,
+    }
   }
 };
