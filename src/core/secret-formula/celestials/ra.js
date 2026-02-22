@@ -47,7 +47,7 @@ export const ra = {
       chunkGain: "Dimension Boosts",
       memoryGain: "galaxies",
       requiredUnlock: () => Ra.unlocks.achievementMultPower,
-      rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.div(1e10), 3).toNumber(),
+      rawMemoryChunksPerSecond: () => 4 * Decimal.pow(DimBoost.totalBoosts.add(1).pLog10(), 3).toNumber(),
       memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
     },
     laitela: {
@@ -590,7 +590,7 @@ export const ra = {
     moreFreeDimBoosts: {
       id: 57,
       reward: "Gain more dimension boosts in Ra's Reality based on Celestial Points",
-      effect: () => Decimal.log10(Decimal.log10(player.endgame.celestialPoints.add(1)).add(1)).add(1),
+      effect: () => Decimal.log10(Decimal.log10(player.endgame.celestialPoints.add(1)).add(1)).sub(1).max(1),
       pet: "ra",
       level: 2,
       displayIcon: "֍",
