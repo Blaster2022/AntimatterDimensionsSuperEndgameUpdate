@@ -606,9 +606,9 @@ export const ra = {
       disabledByPelle: false,
     }
   },
-  laitellaUnlock: {
+  laitelaUnlock: {
       id: 59,
-      reward: "Unlock Laitella's Memories",
+      reward: "Unlock Lai'tela's Memories",
       pet: "ra",
       level: 8,
       displayIcon: `?`
