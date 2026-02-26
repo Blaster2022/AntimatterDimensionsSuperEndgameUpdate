@@ -605,5 +605,12 @@ export const ra = {
       displayIcon: `<span class="fab fa-battle-net"></span>`,
       disabledByPelle: false,
     }
-  }
+  },
+  laitellaUnlock: {
+      id: 59,
+      reward: "Unlock Laitella's Memories",
+      pet: "ra",
+      level: 8,
+      displayIcon: `?`
+    }
 };
