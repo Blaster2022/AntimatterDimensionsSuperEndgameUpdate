@@ -56,9 +56,9 @@ export const ra = {
       color: "white",
       chunkGain: "Dark Matter",
       memoryGain: "Singularities",
-      //requiredUnlock: () => Ra.unlocks.laitelaUnlock,
+      requiredUnlock: () => Ra.unlocks.laitelaUnlock,
       rawMemoryChunksPerSecond: () => 4 * Decimal.pow(player.celestials.laitela.darkMatter.add(1).pLog10().div(100), 4).toNumber(),
-      memoryProductionMultiplier: () => 1//Ra.unlocks.laitelaXP.effectOrDefault(1)
+      memoryProductionMultiplier: () => Ra.unlocks.laitelaXP.effectOrDefault(1)
     },
     pelle: {
       id: "pelle",
