@@ -58,7 +58,7 @@ export const ra = {
       memoryGain: "Singularities",
       requiredUnlock: () => Ra.unlocks.laitelaUnlock,
       rawMemoryChunksPerSecond: () => 4 * Decimal.pow(player.celestials.laitela.darkMatter.add(1).pLog10().div(100), 4).toNumber(),
-      memoryProductionMultiplier: () => 1//Ra.unlocks.laitelaXP.effectOrDefault(1)
+      memoryProductionMultiplier: () => Ra.unlocks.laitelaXP.effectOrDefault(1)
     },
     pelle: {
       id: "pelle",
@@ -66,9 +66,9 @@ export const ra = {
       color: "crimson",
       chunkGain: "Celestial Points",
       memoryGain: "Celestial Matter",
-      //requiredUnlock: () => Ra.unlocks.pelleUnlock,
+      requiredUnlock: () => Ra.unlocks.pelleUnlock,
       rawMemoryChunksPerSecond: () => 4 * Decimal.pow(player.endgame.celestialPoints.add(1).pLog10().div(10), 6).toNumber(),
-      memoryProductionMultiplier: () => 1//Ra.unlocks.pelleXP.effectOrDefault(1)
+      memoryProductionMultiplier: () => Ra.unlocks.pelleXP.effectOrDefault(1)
     }
   },
   unlocks: {
