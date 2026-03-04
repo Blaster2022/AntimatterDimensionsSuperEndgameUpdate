@@ -694,7 +694,7 @@ export const ra = {
       reward: "Glyphs are always guaranteed to be the highest rarity",
       pet: "laitela",
       level: 25,
-      displayIcon: `<span class="fas fa-cancer"></span>`,
+      displayIcon: `<span class="fab fa-phoenix-framework"></span>`,
       disabledByPelle: false,
     },
     galGenInstabilityReduction: {
