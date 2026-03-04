@@ -36,6 +36,7 @@ export default {
       nextMemoryUpgradeEstimate: "",
       nextMemoryChunkUpgradeEstimate: "",
       isExpanded: false,
+      canExpand: false,
     };
   },
   computed: {
@@ -89,6 +90,7 @@ export default {
       this.currentMemoryMult = pet.memoryUpgradeCurrentMult;
       this.currentChunkMult = pet.chunkUpgradeCurrentMult;
       this.isExpanded = ExpansionPack.raPack.isBought;
+      this.canExpand = pet.id === "teresa" || pet.id === "effarig" || pet.id === "enslaved" || pet.id === "v";
 
       this.nextMemoryUpgradeEstimate = Ra.timeToGoalString(pet, this.memoryUpgradeCost - this.memories);
       this.nextMemoryChunkUpgradeEstimate = Ra.timeToGoalString(pet, this.chunkUpgradeCost - this.memories);
@@ -279,7 +281,7 @@ export default {
         v-else
         class="l-ra-pet-postcompletion-spacer"
       />
-      <div v-if="isExpanded">
+      <div v-if="isExpanded && canExpand">
         <div
           v-for="row in 2"
           :key="row"
@@ -293,7 +295,7 @@ export default {
           />
         </div>
       </div>
-      <div v-if="!isExpanded">
+      <div v-if="!isExpanded || !canExpand">
         <div
           v-for="row in 1"
           :key="row"
