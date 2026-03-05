@@ -657,7 +657,7 @@ export const ra = {
     laitelaXP: {
       id: 65,
       reward: "All Memory Chunks produce more Memories based on Celestial Points",
-      effect: () => Math.pow(player.endgame.celestialPoints.div(10).toNumber(), 0.2),
+      effect: () => Math.pow(player.endgame.celestialPoints.add(1).log10().div(10).toNumber(), 0.2),
       pet: "laitela",
       level: 5,
       displayIcon: `<span class="fab fa-galactic-senate"></span>`,
