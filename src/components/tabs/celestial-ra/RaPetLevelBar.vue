@@ -75,11 +75,11 @@ export default {
         case "V":
           return Math.min(Math.floor(this.level / 6), 4) !== Math.min(Math.floor((this.level + 1) / 6), 4);
         case "Ra":
-          return true;
+          return false;
         case "Lai'tela":
           return true;
         case "Pelle":
-          return true;
+          return Math.min(Math.floor(this.level / 6), 4) !== Math.min(Math.floor((this.level + 1) / 6), 4);
         default:
           return false;
       }
@@ -97,11 +97,11 @@ export default {
         case "V":
           return "You can purchase an additional Triad Study";
         case "Ra":
-          return "NYI";
+          return "No resource boost (yet)";
         case "Lai'tela":
-          return "NYI";
+          return "Unlock a new resource in Lai'tela's Alchemy";
         case "Pelle":
-          return "NYI";
+          return "Unlock a new Galaxy Generator Upgrade";
         default:
           return "false";
       }
