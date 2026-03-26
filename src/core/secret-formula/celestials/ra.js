@@ -752,8 +752,8 @@ export const ra = {
     },
     endgamePointIncrease: {
       id: 76,
-      reward: () => `Endgame Points are raised ${formatPow(1.1, 1, 1)}`,
-      effect: 1.1,
+      reward: () => `Endgame Points are raised ${formatPow(1.05, 1, 1)}`,
+      effect: 1.05,
       pet: "pelle",
       level: 25,
       displayIcon: `<span class="fas fa-hourglass-end"></span>`,
