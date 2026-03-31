@@ -1168,8 +1168,7 @@ export function gainedCelestialPoints() {
 
 export function gainedDoomedParticles() {
   if (!player.break2) return DC.D1;
-  let dp = player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10().div(9e15)
-  : Decimal.min(player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10().div(9e15), new Decimal(1e100 - player.endgame.doomedParticles.toNumber()));
+  let dp = Decimal.min(player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10().div(9e15), new Decimal(1e100 - player.endgame.doomedParticles.toNumber()));
   return dp.floor();
 }
 
