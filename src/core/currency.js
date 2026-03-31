@@ -578,7 +578,7 @@ Currency.celestialMatter = new class extends DecimalCurrency {
 Currency.doomedParticles = new class extends DecimalCurrency {
   get value() { return player.endgame.doomedParticles; }
   set value(value) {
-    const newValue = Decimal.min(value, DC.E100);
+    const newValue = new Decimal(value);
     player.endgame.doomedParticles = newValue;
   }
 }();
