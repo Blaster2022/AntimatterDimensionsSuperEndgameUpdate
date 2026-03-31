@@ -1163,6 +1163,7 @@ export function gainedCelestialPoints() {
   if (Achievement(197).isUnlocked) {
     cp = cp.times(Decimal.max(9e115, player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10()).div(9e115));
   }
+  cp = cp.powEffectsOf(Ra.unlocks.celPointBuff);
   return cp.floor();
 }
 
