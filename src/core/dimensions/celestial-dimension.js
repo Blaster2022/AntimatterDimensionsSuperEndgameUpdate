@@ -96,7 +96,7 @@ class CelestialDimensionState extends DimensionState {
     let mult = GameCache.celestialDimensionCommonMultiplier.value;
     mult = mult.times(Decimal.pow(this.powerMultiplier, Math.floor(this.baseAmount)));
     mult = mult.powEffectsOf(SingularityMilestone.dimensionPow, Ra.unlocks.celestialDimensionPower);
-    return mult;
+    return Pelle.isDoomed ? mult.powEffectOf(Ra.unlocks.celestialDimensionOverbuff) : mult;
   }
 
   get isProducing() {
