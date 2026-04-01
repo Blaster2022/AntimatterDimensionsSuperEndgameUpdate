@@ -389,7 +389,7 @@ export const alchemyResources = {
     name: "Multiversal",
     symbol: "Σ",
     isBaseResource: false,
-    effect: amount => Math.min(32 * Math.pow(amount / 20000, 2),10000),
+    effect: amount => Math.min(32 * Math.pow(amount / 20000, 2),450),
     tier: 4,
     uiOrder: 5,
     unlockedAt: 16,
