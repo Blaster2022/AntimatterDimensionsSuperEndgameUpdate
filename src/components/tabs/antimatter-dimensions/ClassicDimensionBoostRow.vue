@@ -45,6 +45,10 @@ export default {
         "tutorial--glow": this.isBuyable && this.hasTutorial,
         "o-pelle-disabled-pointer": this.creditsClosed
       };
+    },
+    dimBoostName() {
+      if (Ra.isRunning && Ra.unlocks.alteredDimensionBoosts.canBeApplied) return "Altered Dimension Boost";
+      return "Dimension Boost";
     }
   },
   methods: {
@@ -72,7 +76,7 @@ export default {
 <template>
   <div class="c-dimension-row c-antimatter-dim-row c-antimatter-prestige-row">
     <div class="l-dim-row__prestige-text c-dim-row__label c-dim-row__label--amount">
-      Dimension Boost ({{ boostCountText }}):
+      {{ dimBoostName }} ({{ boostCountText }}):
       requires {{ formatHybridLarge(requirement.amount, 3) }} {{ dimName }} Dimensions
     </div>
     <PrimaryButton
