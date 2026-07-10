@@ -33,6 +33,7 @@ export class DimBoost {
         PelleRifts.recursion.milestones[0]
       ).powEffectsOf(InfinityUpgrade.dimboostMult.chargedEffect);
     if (GlyphAlteration.isAdded("effarig")) boost = boost.pow(getSecondaryGlyphEffect("effarigforgotten"));
+    if (Ra.isRunning && Ra.unlocks.alteredDimensionBoosts.canBeApplied) boost = Decimal.pow10(boost.max(1).log10().pow(2));
     return boost;
   }
 
@@ -55,7 +56,7 @@ export class DimBoost {
     if (Ra.isRunning) {
       // Ra makes boosting impossible. Note that this function isn't called
       // when giving initial boosts, so the player will still get those.
-      return DC.D0;
+      return Ra.unlocks.alteredDimensionBoosts.canBeApplied ? DC.E9E15 : DC.D0;
     }
     if (InfinityChallenge(1).isRunning) {
       // Usually, in Challenge 8, the only boosts that are useful are the first 5
@@ -83,7 +84,7 @@ export class DimBoost {
 
   static get lockText() {
     if (DimBoost.purchasedBoosts.gte(this.maxBoosts)) {
-      if (Ra.isRunning) return "Locked (Ra's Reality)";
+      if (Ra.isRunning && !Ra.unlocks.alteredDimensionBoosts.canBeApplied) return "Locked (Ra's Reality)";
       if (InfinityChallenge(1).isRunning) return "Locked (Infinity Challenge 1)";
       if (NormalChallenge(8).isRunning) return "Locked (8th Antimatter Dimension Autobuyer Challenge)";
     }
