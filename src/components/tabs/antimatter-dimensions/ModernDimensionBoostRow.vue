@@ -41,6 +41,10 @@ export default {
         "o-primary-btn--disabled": !this.isBuyable,
         "o-pelle-disabled-pointer": this.creditsClosed
       };
+    },
+    dimBoostName() {
+      if (Ra.isRunning && Ra.unlocks.alteredDimensionBoosts.canBeApplied) return "Altered Dimension Boost";
+      return "Dimension Boost";
     }
   },
   methods: {
@@ -67,7 +71,7 @@ export default {
 
 <template>
   <div class="reset-container dimboost">
-    <h4>Dimension Boost ({{ boostCountText }})</h4>
+    <h4>{{ dimBoostName }} ({{ boostCountText }})</h4>
     <span>Requires: {{ formatHybridLarge(requirement.amount, 3) }} {{ dimName }} Antimatter D</span>
     <button
       :class="classObject"
