@@ -106,7 +106,7 @@ export class DimBoost {
   static bulkRequirement(bulk) {
     const targetResets = DimBoost.purchasedBoosts.add(bulk);
     const tier = Decimal.min(targetResets.add(3), this.maxDimensionsUnlockable).toNumber();
-    if (Ra.unlocks.chargedDimensionBoosts.canBeApplied) {
+    if (Ra.unlocks.chargedDimensionBoost.canBeApplied) {
       if (targetResets.lt(this.maxDimensionsUnlockable - 3)) return new DimBoostRequirement(tier, DC.D1);
       return new DimBoostRequirement(tier, Decimal.pow10(targetResets.sub(this.maxDimensionsUnlockable - 4)));
     }
