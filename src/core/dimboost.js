@@ -147,7 +147,7 @@ export class DimBoost {
     }
 
     const formattedMultText = `give a ${formatX(DimBoost.power, 2, 1)} multiplier `;
-    const formattedPowText = Ra.isRunning && Ra.unlocks.chargedDimensionBoosts.canBeApplied
+    const formattedPowText = Ra.isRunning && Ra.unlocks.chargedDimensionBoost.canBeApplied
       ? `and a +${formatPow(DimBoost.exponentialPower, 2, 3)} power ` : "";
     let dimensionRange = `to the 1st Dimension`;
     if (boosts.gt(0)) dimensionRange = `to Dimensions 1-${Decimal.min(boosts.add(1), 8)}`;
@@ -261,14 +261,14 @@ function maxBuyDimBoosts() {
   let calcBoosts;
   const tier = DimBoost.maxDimensionsUnlockable;
   const ad = AntimatterDimension(tier).totalAmount;
-  if (Ra.unlocks.chargedDimensionBoosts.canBeApplied) {
+  if (Ra.unlocks.chargedDimensionBoost.canBeApplied) {
     calcBoosts = Decimal.log10(ad.max(1));
     calcBoosts = calcBoosts.add(NormalChallenge(10).isRunning ? 2 : 4);
     calcBoosts = calcBoosts.sub(DimBoost.purchasedBoosts);
     const minCBoosts = Decimal.min(DC.E9E15, calcBoosts.floor());
     softReset(minCBoosts);
   }
-  if (Ra.unlocks.chargedDimensionBoosts.canBeApplied) return;
+  if (Ra.unlocks.chargedDimensionBoost.canBeApplied) return;
   let amount = DC.D20;
   const discount = Effects.sum(
     TimeStudy(211),
