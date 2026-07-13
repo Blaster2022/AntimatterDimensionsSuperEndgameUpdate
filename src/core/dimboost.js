@@ -106,7 +106,7 @@ export class DimBoost {
   static bulkRequirement(bulk) {
     const targetResets = DimBoost.purchasedBoosts.add(bulk);
     const tier = Decimal.min(targetResets.add(3), this.maxDimensionsUnlockable).toNumber();
-    if (Ra.isRunning && Ra.unlocks.chargedDimensionBoosts.canBeApplied) {
+    if (Ra.unlocks.chargedDimensionBoosts.canBeApplied) {
       if (targetResets.lt(this.maxDimensionsUnlockable - 3)) return new DimBoostRequirement(tier, DC.D1);
       return new DimBoostRequirement(tier, Decimal.pow10(targetResets.sub(this.maxDimensionsUnlockable - 4)));
     }
@@ -261,14 +261,14 @@ function maxBuyDimBoosts() {
   let calcBoosts;
   const tier = DimBoost.maxDimensionsUnlockable;
   const ad = AntimatterDimension(tier).totalAmount;
-  if (Ra.isRunning && Ra.unlocks.chargedDimensionBoosts.canBeApplied) {
+  if (Ra.unlocks.chargedDimensionBoosts.canBeApplied) {
     calcBoosts = Decimal.log10(ad.max(1));
     calcBoosts = calcBoosts.add(NormalChallenge(10).isRunning ? 2 : 4);
     calcBoosts = calcBoosts.sub(DimBoost.purchasedBoosts);
     const minCBoosts = Decimal.min(DC.E9E15, calcBoosts.floor());
     softReset(minCBoosts);
   }
-  if (Ra.isRunning && Ra.unlocks.chargedDimensionBoosts.canBeApplied) return;
+  if (Ra.unlocks.chargedDimensionBoosts.canBeApplied) return;
   let amount = DC.D20;
   const discount = Effects.sum(
     TimeStudy(211),
