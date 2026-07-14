@@ -37,11 +37,19 @@ export class DimBoost {
     return boost;
   }
 
+  static get exponentialPower() {
+    return Decimal.log10(Decimal.log10(this.power).max(1)).div(100);
+  }
+
   static multiplierToNDTier(tier) {
     const normalBoostMult = DimBoost.power.pow(this.purchasedBoosts.add(1).sub(tier)).clampMin(1);
     const imaginaryBoostMult = DimBoost.power.times(ImaginaryUpgrade(24).effectOrDefault(1))
       .pow(this.imaginaryBoosts).clampMin(1);
     return normalBoostMult.times(imaginaryBoostMult);
+  }
+
+  static get powerToND() {
+    return this.exponentialPower.times(this.purchasedBoosts).add(1);
   }
 
   static get maxDimensionsUnlockable() {
@@ -98,6 +106,10 @@ export class DimBoost {
   static bulkRequirement(bulk) {
     const targetResets = DimBoost.purchasedBoosts.add(bulk);
     const tier = Decimal.min(targetResets.add(3), this.maxDimensionsUnlockable).toNumber();
+    if (Ra.unlocks.chargedDimensionBoost.canBeApplied) {
+      if (targetResets.lt(this.maxDimensionsUnlockable - 3)) return new DimBoostRequirement(tier, DC.D1);
+      return new DimBoostRequirement(tier, Decimal.pow10(targetResets.sub(this.maxDimensionsUnlockable - 4)));
+    }
     let amount = DC.D20;
     const discount = Effects.sum(
       TimeStudy(211),
@@ -135,14 +147,16 @@ export class DimBoost {
     }
 
     const formattedMultText = `give a ${formatX(DimBoost.power, 2, 1)} multiplier `;
+    const formattedPowText = Ra.isRunning && Ra.unlocks.chargedDimensionBoost.canBeApplied
+      ? `and a +${formatPow(DimBoost.exponentialPower, 2, 3)} power ` : "";
     let dimensionRange = `to the 1st Dimension`;
     if (boosts.gt(0)) dimensionRange = `to Dimensions 1-${Decimal.min(boosts.add(1), 8)}`;
     if (boosts.gte(DimBoost.maxDimensionsUnlockable - 1)) dimensionRange = `to all Dimensions`;
 
     let boostEffects;
     if (NormalChallenge(8).isRunning) boostEffects = newUnlock;
-    else if (newUnlock === "") boostEffects = `${formattedMultText} ${dimensionRange}`;
-    else boostEffects = `${newUnlock} and ${formattedMultText} ${dimensionRange}`;
+    else if (newUnlock === "") boostEffects = `${formattedMultText} ${formattedPowText} ${dimensionRange}`;
+    else boostEffects = `${newUnlock} and ${formattedMultText} ${formattedPowText} ${dimensionRange}`;
 
     if (boostEffects === "") return "Dimension Boosts are currently useless";
     const areDimensionsKept = (Perk.antimatterNoReset.isBought || Achievement(111).canBeApplied) &&
@@ -244,7 +258,17 @@ function maxBuyDimBoosts() {
     return;
   }
 
+  let calcBoosts;
   const tier = DimBoost.maxDimensionsUnlockable;
+  const ad = AntimatterDimension(tier).totalAmount;
+  if (Ra.unlocks.chargedDimensionBoost.canBeApplied) {
+    calcBoosts = Decimal.log10(ad.max(1));
+    calcBoosts = calcBoosts.add(NormalChallenge(10).isRunning ? 2 : 4);
+    calcBoosts = calcBoosts.sub(DimBoost.purchasedBoosts);
+    const minCBoosts = Decimal.min(DC.E9E15, calcBoosts.floor());
+    softReset(minCBoosts);
+  }
+  if (Ra.unlocks.chargedDimensionBoost.canBeApplied) return;
   let amount = DC.D20;
   const discount = Effects.sum(
     TimeStudy(211),
@@ -263,8 +287,6 @@ function maxBuyDimBoosts() {
   multiplierPerDB = multiplierPerDB.times(InfinityUpgrade.resetBoost.chargedEffect.effectOrDefault(1));
   amount = amount.times(InfinityUpgrade.resetBoost.chargedEffect.effectOrDefault(1));
 
-  const ad = AntimatterDimension(tier).totalAmount;
-  let calcBoosts;
   calcBoosts = ad.sub(amount).div(multiplierPerDB);
 
 
