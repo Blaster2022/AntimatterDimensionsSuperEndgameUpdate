@@ -34,10 +34,14 @@ export default {
       showInstability: false,
       showHigherInstability: false,
       showMoreHigherInstability: false,
+      showEvenMoreHigherInstability: false,
+      showStillEvenMoreHigherInstability: false,
       instabilityThreshold: 0,
       hyperInstabilityThreshold: 0,
       extremeInstabilityThreshold: 0,
       immenseInstabilityThreshold: 0,
+      prodigiousInstabilityThreshold: 0,
+      extensiveInstabilityThreshold: 0,
       isInCelestialReality: false,
       canAmplify: false,
       glyphTextColors: true,
@@ -65,10 +69,14 @@ export default {
       this.showInstability = player.records.bestReality.glyphLevel > 800 || player.records.bestEndgame.glyphLevel > 800;
       this.showHigherInstability = player.records.bestEndgame.glyphLevel > 60000;
       this.showMoreHigherInstability = player.records.bestEndgame.glyphLevel > 160000;
+      this.showEvenMoreHigherInstability = player.records.bestEndgame.glyphLevel > 450000;
+      this.showStillEvenMoreHigherInstability = player.records.bestEndgame.glyphLevel > 900000;
       this.instabilityThreshold = Glyphs.instabilityThreshold;
       this.hyperInstabilityThreshold = Glyphs.hyperInstabilityThreshold;
       this.extremeInstabilityThreshold = Glyphs.extremeInstabilityThreshold;
       this.immenseInstabilityThreshold = Glyphs.immenseInstabilityThreshold;
+      this.extensiveInstabilityThreshold = Glyphs.extensiveInstabilityThreshold;
+      this.prodigiousInstabilityThreshold = Glyphs.prodigiousInstabilityThreshold;
       this.isInCelestialReality = isInCelestialReality();
       this.canAmplify = Enslaved.isUnlocked && !this.isInCelestialReality;
       this.autoRestartCelestialRuns = player.options.retryCelestial;
@@ -170,6 +178,12 @@ export default {
           </div>
           <div v-if="showMoreHigherInstability">
             Past level {{ formatInt(immenseInstabilityThreshold) }}, higher Glyph levels become not much more than a dream.
+          </div>
+          <div v-if="showEvenMoreHigherInstability">
+            Past level {{ formatInt(extensiveInstabilityThreshold) }}, no more levels.
+          </div>
+          <div v-if="showStillEvenMoreHigherInstability">
+            Past level {{ formatInt(prodigiousInstabilityThreshold) }}, no.
           </div>
         </div>
         <SingleGlyphCustomzationPanel />

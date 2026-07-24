@@ -33,7 +33,7 @@ export class DimBoost {
         PelleRifts.recursion.milestones[0]
       ).powEffectsOf(InfinityUpgrade.dimboostMult.chargedEffect);
     if (GlyphAlteration.isAdded("effarig")) boost = boost.pow(getSecondaryGlyphEffect("effarigforgotten"));
-    if (Ra.isRunning && Ra.unlocks.alteredDimensionBoosts.canBeApplied) boost = Decimal.pow10(boost.max(1).log10().pow(2));
+    /*if (Ra.isRunning && Ra.unlocks.alteredDimensionBoosts.canBeApplied) boost = Decimal.pow10(boost.max(1).log10().pow(2));*/
     return boost;
   }
 
@@ -64,7 +64,7 @@ export class DimBoost {
     if (Ra.isRunning) {
       // Ra makes boosting impossible. Note that this function isn't called
       // when giving initial boosts, so the player will still get those.
-      return Ra.unlocks.alteredDimensionBoosts.canBeApplied ? DC.E9E15 : DC.D0;
+      return Ra.unlocks.alteredDimensionBoosts.canBeApplied ? DC.E8 : DC.D0;
     }
     if (InfinityChallenge(1).isRunning) {
       // Usually, in Challenge 8, the only boosts that are useful are the first 5
@@ -172,7 +172,7 @@ export class DimBoost {
   static get imaginaryBoosts() {
     return (Ra.isRunning && !Ra.unlocks.freeDimBoosts.canBeApplied)
       ? DC.D0
-      : Decimal.pow(ImaginaryUpgrade(12).effectOrDefault(0) * ImaginaryUpgrade(23).effectOrDefault(1), Ra.unlocks.moreFreeDimBoosts.effectOrDefault(1));
+      : Decimal.pow(Decimal.pow(ImaginaryUpgrade(12).effectOrDefault(0) * ImaginaryUpgrade(23).effectOrDefault(1), new Decimal(0.5)), Ra.unlocks.moreFreeDimBoosts.effectOrDefault(1));
   }
 
   static get totalBoosts() {
@@ -319,7 +319,7 @@ function maxBuyDimBoosts() {
     calcBoosts = calcBoosts.add(NormalChallenge(10).isRunning ? 2 : 4);
     // Dimension boosts 1-4 dont use 8th dims, 1-2 dont use 6th dims, so add those extras afterwards.
   }
-  
+
   // Add one cause (x-b)/i is off by one otherwise
   if (calcBoosts.floor().add(1).lte(DimBoost.purchasedBoosts)) return;
   calcBoosts = calcBoosts.sub(DimBoost.purchasedBoosts);
