@@ -33,7 +33,7 @@ export class DimBoost {
         PelleRifts.recursion.milestones[0]
       ).powEffectsOf(InfinityUpgrade.dimboostMult.chargedEffect);
     if (GlyphAlteration.isAdded("effarig")) boost = boost.pow(getSecondaryGlyphEffect("effarigforgotten"));
-    /*if (Ra.isRunning && Ra.unlocks.alteredDimensionBoosts.canBeApplied) boost = Decimal.pow10(boost.max(1).log10().pow(2));*/
+    if (Ra.isRunning && Ra.unlocks.alteredDimensionBoosts.canBeApplied) boost = Decimal.pow10(boost.max(1).log10().pow(2));
     return boost;
   }
 
