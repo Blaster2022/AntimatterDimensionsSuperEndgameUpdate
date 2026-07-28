@@ -189,7 +189,7 @@ function applyNDPowers(mult, tier) {
     multiplier = multiplier.pow(0.5);
   }
 
-  multiplier = multiplier.pow(DimBoost.powerToND);
+  if (Ra.unlocks.chargedDimensionBoosts.canBeApplied) multiplier = multiplier.pow(DimBoost.powerToND);
 
   return multiplier;
 }
