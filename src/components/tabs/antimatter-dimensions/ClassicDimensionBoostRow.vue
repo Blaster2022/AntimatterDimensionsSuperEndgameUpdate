@@ -48,7 +48,7 @@ export default {
     },
     dimBoostName() {
       if (Ra.isRunning && Ra.unlocks.alteredDimensionBoosts.canBeApplied &&
-        Ra.unlocks.alteredDimensionBoosts.canBeApplied) return "Charged Altered Dimension Boost";
+        Ra.unlocks.chargedDimensionBoosts.canBeApplied) return "Charged Altered Dimension Boost";
       if (Ra.isRunning && Ra.unlocks.alteredDimensionBoosts.canBeApplied) return "Altered Dimension Boost";
       if (Ra.unlocks.chargedDimensionBoosts.canBeApplied) return "Charged Dimension Boost";
       return "Dimension Boost";
