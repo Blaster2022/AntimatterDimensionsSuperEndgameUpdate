@@ -621,7 +621,7 @@ export const ra = {
       displayIcon: `<span class="fas fa-rocket"></span>`,
       disabledByPelle: false,
     },
-    chargedDimensionBoost: {
+    chargedDimensionBoosts: {
       id: 61,
       reward: "Unlock Charged Dimension Boosts",
       pet: "ra",
