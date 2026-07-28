@@ -325,6 +325,7 @@ export const Ra = {
     for (const unl of Ra.unlocks.all) {
       unl.unlock();
     }
+    if (player.celestials.ra.pets.ra.level === 15) player.dimensionBoosts = DC.D0;
 
     Ra.checkForQuotes();
   },
