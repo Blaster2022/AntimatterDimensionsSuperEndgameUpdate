@@ -11,10 +11,9 @@ export function isEndgameAvailable() {
   return ExpansionPacks.pellePack.isBought ? player.antimatter.add(1).log10().gte(9e15) : player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10().gte(9e15);
 }
 
-const gainedCP = Pelle.isDoomed ? gainedCelestialPoints() : gainedCelestialPointsOutsideDoom();
-const gainedDP = Pelle.isDoomed ? gainedDoomedParticles() : gainedDoomedParticlesOutsideDoom();
-
 function updateEndgameRecords() {
+  const gainedCP = Pelle.isDoomed ? gainedCelestialPoints() : gainedCelestialPointsOutsideDoom();
+  const gainedDP = Pelle.isDoomed ? gainedDoomedParticles() : gainedDoomedParticlesOutsideDoom();
   player.records.bestEndgame.bestCPmin =
     player.records.bestEndgame.bestCPmin.max(player.records.thisEndgame.bestCPmin);
   player.records.bestEndgame.bestDPmin =
@@ -28,6 +27,8 @@ function updateEndgameRecords() {
 }
 
 function giveEndgameRewards() {
+  const gainedCP = Pelle.isDoomed ? gainedCelestialPoints() : gainedCelestialPointsOutsideDoom();
+  const gainedDP = Pelle.isDoomed ? gainedDoomedParticles() : gainedDoomedParticlesOutsideDoom();
   const endgameMultiplier = (ExpansionPack.enslavedPack.isBought
     ? Math.floor(1 + Math.pow(Math.log10(Math.min(Tesseracts.effectiveCount, 1000) * Math.max(Math.log10(Tesseracts.effectiveCount) - 2, 1) + 1), Math.log10(player.endgames + 1)))
     : 1);
