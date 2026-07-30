@@ -77,7 +77,8 @@ export const expansionPacks = {
     symbol: "♅",
     description: () =>
       `Reduce the Galaxy Generator Instability Magnitude by ${formatInt(1)}, raise the first three types of Dimensions to
-      a power based on your all-time record Galaxy amount, and unlock autobuyers for the repeatable Galaxy Generator upgrades.`,
+      a power based on your all-time record Galaxy amount, and unlock autobuyers for the repeatable Galaxy Generator upgrades.
+      You can now Endgame outside of Doom.`,
     cost: Decimal.pow(10, 1e150),
     formatCost: value => formatPostBreak(value, 2, 0)
   }
