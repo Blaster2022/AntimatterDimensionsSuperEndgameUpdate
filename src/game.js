@@ -1167,9 +1167,27 @@ export function gainedCelestialPoints() {
   return cp.floor();
 }
 
+export function gainedCelestialPointsOutsideDoom() {
+  if (!player.break2) return DC.D1;
+  let cp = player.records.totalEndgameAntimatter.add(1).log10().div(9e15);
+  if (Achievement(197).isUnlocked) {
+    cp = cp.times(Decimal.max(9e35, player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10()).div(9e35));
+  }
+  cp = cp.pow(5);
+  cp = cp.pow(Ra.unlocks.celPointBuff.effectOrDefault(1).pow(5));
+  return cp.floor();
+}
+
 export function gainedDoomedParticles() {
   if (!player.break2) return DC.D1;
   let dp = player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10().div(9e15);
+  return dp.floor();
+}
+
+export function gainedDoomedParticlesOutsideDoom() {
+  if (!player.break2) return DC.D1;
+  let dp = player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10().div(9e15);
+  dp = dp.pow(5);
   return dp.floor();
 }
 
