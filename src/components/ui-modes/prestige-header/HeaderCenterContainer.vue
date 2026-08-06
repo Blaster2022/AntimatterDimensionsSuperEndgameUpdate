@@ -32,6 +32,7 @@ export default {
       celestialPoints: new Decimal(0),
       doomedParticles: new Decimal(0),
       showEndgame: false,
+      showEndgameOutsideDoom: false,
     };
   },
   methods: {
@@ -48,6 +49,7 @@ export default {
       this.celestialPoints.copyFrom(Currency.celestialPoints);
       this.doomedParticles.copyFrom(Currency.doomedParticles);
       this.showEndgame = PlayerProgress.endgameUnlocked();
+      this.showEndgameOutsideDoom = ExpansionPack.pellePack.isBought && !Pelle.isDoomed;
     },
   },
 };
@@ -81,6 +83,12 @@ export default {
       />
       <RealityButton
         v-if="!isDoomed"
+        :is-header="true"
+      />
+      <br>
+      <br>
+      <EndgameButton
+        v-if="showEndgameOutsideDoom"
         :is-header="true"
       />
     </div>
