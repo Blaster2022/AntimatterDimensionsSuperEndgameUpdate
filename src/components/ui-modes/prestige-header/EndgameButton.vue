@@ -33,8 +33,8 @@ export default {
         this.gainedDP = 0;
         return;
       }
-      this.gainedCP = gainedCelestialPoints();
-      this.gainedDP = gainedDoomedParticles();
+      this.gainedCP = Pelle.isDoomed ? gainedCelestialPoints() : gainedCelestialPointsOutsideDoom();
+      this.gainedDP = Pelle.isDoomed ? gainedDoomedParticles() : gainedDoomedParticlesOutsideDoom();
     },
     handleClick() {
       if (this.canEndgame) {
