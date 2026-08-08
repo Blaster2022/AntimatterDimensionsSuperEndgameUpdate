@@ -509,6 +509,8 @@ window.player = {
     maxRM: DC.D0,
     imaginaryMachines: DC.D0,
     iMCap: DC.D0,
+    eterigaryMachines: DC.D0,
+    eMCap: DC.D0,
     glyphs: {
       active: [],
       inventory: [],
