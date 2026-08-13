@@ -132,7 +132,7 @@ class RaPetState extends GameMechanicState {
 
   get requiredMemories() {
     return (this.id === "ra" || this.id === "laitela" || this.id === "pelle")
-      ? Ra.requiredMemoriesForLevelExtra(this.level);
+      ? Ra.requiredMemoriesForLevelExtra(this.level)
       : Ra.requiredMemoriesForLevel(this.level);
   }
 
