@@ -131,7 +131,9 @@ class RaPetState extends GameMechanicState {
   }
 
   get requiredMemories() {
-    return Ra.requiredMemoriesForLevel(this.level);
+    return (this.id === "ra" || this.id === "laitela" || this.id === "pelle")
+      ? Ra.requiredMemoriesForLevelExtra(this.level);
+      : Ra.requiredMemoriesForLevel(this.level);
   }
 
   get memoryChunksPerSecond() {
@@ -177,11 +179,17 @@ class RaPetState extends GameMechanicState {
   }
 
   get memoryUpgradeCapped() {
-    return this.memoryUpgradeCost >= 0.5 * Ra.requiredMemoriesForLevel(Ra.levelCap - 1);
+    return this.memoryUpgradeCost >= 0.5 *
+      ((this.id === "ra" || this.id === "laitela" || this.id === "pelle")
+       ? Ra.requiredMemoriesForLevelExtra(Ra.levelCap - 1)
+       : Ra.requiredMemoriesForLevel(Ra.levelCap - 1));
   }
 
   get chunkUpgradeCapped() {
-    return this.chunkUpgradeCost >= 0.5 * Ra.requiredMemoriesForLevel(Ra.levelCap - 1);
+    return this.chunkUpgradeCost >= 0.5 *
+      ((this.id === "ra" || this.id === "laitela" || this.id === "pelle")
+       ? Ra.requiredMemoriesForLevelExtra(Ra.levelCap - 1)
+       : Ra.requiredMemoriesForLevel(Ra.levelCap - 1));
   }
 
   purchaseMemoryUpgrade() {
@@ -293,6 +301,13 @@ export const Ra = {
     const post15Scaling = Math.pow(1.5, Math.max(0, level - 15));
     const post25Scaling = Math.pow(10 + Math.max(0, level - 25), 2 * Math.max(0, level - 25));
     return Math.floor(Math.pow(adjustedLevel, 5.52) * post15Scaling * post25Scaling * 1e6);
+  },
+  requiredMemoriesForLevelExtra(level) {
+    if (level >= Ra.levelCap) return Infinity;
+    const adjustedLevel = level + Math.pow(level, 3) / 10;
+    const post15Scaling = Math.pow(5, Math.max(0, level - 15));
+    const post25Scaling = Math.pow(10 + Math.max(0, level - 25), 10 * Math.max(0, level - 25));
+    return Math.floor(Math.pow(adjustedLevel, 10) * post15Scaling * post25Scaling * 1e6);
   },
   // Returns a string containing a time estimate for gaining a specific amount of exp (UI only)
   timeToGoalString(pet, expToGain) {
