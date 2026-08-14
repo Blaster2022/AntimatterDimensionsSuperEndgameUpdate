@@ -1174,7 +1174,7 @@ export function gainedCelestialPointsOutsideDoom() {
     cp = cp.times(Decimal.max(9e35, player.records.totalEndgameAntimatter.add(1).log10()).div(9e35));
   }
   cp = cp.pow(5);
-  cp = cp.pow(new Decimal(Ra.unlocks.celPointBuff.effectOrDefault(1)).pow(5));
+  cp = cp.powEffectsOf(Ra.unlocks.celPointBuff);
   return cp.floor();
 }
 
