@@ -16,6 +16,7 @@ import EndgameMasteriesTab from "./endgame-masteries/EndgameMasteriesTab";
 import EndgameMilestonesTab from "./endgame-milestones/EndgameMilestonesTab";
 import EndgameUpgradesTab from "./endgame-upgrades/EndgameUpgradesTab";
 import EnslavedTab from "./celestial-enslaved/EnslavedTab";
+import EterigaryUpgradesTab from "./eterigary-upgrades/EterigaryUpgradesTab";
 import EternityChallengesTab from "./eternity-challenges/EternityChallengesTab";
 import EternityMilestonesTab from "./eternity-milestones/EternityMilestonesTab";
 import EternityUpgradesTab from "./eternity-upgrades/EternityUpgradesTab";
@@ -94,6 +95,7 @@ const TabComponents = {
   GlyphsTab,
   RealityUpgradesTab,
   ImaginaryUpgradesTab,
+  EterigaryUpgradesTab,
   PerksTab,
   BlackHoleTab,
   AlchemyTab,
