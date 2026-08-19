@@ -108,197 +108,154 @@ export const eterigaryUpgrades = [
     formatEffect: value => `${formatX(value, 2)}`,
     isQuadratic: true
   }),
-  /*{
-    name: "Interference of Forever",
+  {
+    name: "NYI",
     id: 11,
-    cost: new Decimal(1e9),
-    requirement: () => `${format("1e1640")} total Relic Shards
-      (You have ${format(player.celestials.effarig.relicShards, 2)})`,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
     hasFailed: () => false,
-    checkRequirement: () => player.celestials.effarig.relicShards.gte(DC.E1640),
-    checkEvent: GAME_EVENT.REALITY_RESET_AFTER,
-    description: "Multiply Continuum purchases based on Hadronization amount",
-    effect: () => player.disablePostReality ? 1 : Math.sqrt(Laitela.hadronizes),
-    formatEffect: value => `${formatX(value, 2, 2)}`
+    checkRequirement: () => false,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    description: "NYI"
   },
   {
-    name: "Repercussions of Apparitions",
+    name: "NYI",
     id: 12,
-    cost: new Decimal(6e9),
-    requirement: () => `Make a level ${formatInt(102500)} Glyph with all Glyph level factor weights at
-    ${formatInt(0)}`,
-    hasFailed: () => !Object.values(player.celestials.effarig.glyphWeights).every(w => w === 0),
-    checkRequirement: () => Object.values(player.celestials.effarig.glyphWeights).every(w => w === 0) &&
-      gainedGlyphLevel().actualLevel.gte(102500),
-    checkEvent: GAME_EVENT.REALITY_RESET_BEFORE,
-    description: "Raise free Dimboost gain to a power based on repeatable Duality Upgrade purchases",
-    effect: () => player.disablePostReality ? 1 : 1 + Math.log10(DualityUpgrades.totalRebuyables) * 1.5,
-    formatEffect: value => `${formatPow(value, 2, 3)}`
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
+    hasFailed: () => false,
+    checkRequirement: () => false,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    description: "NYI"
   },
   {
-    name: "Ephemerality of Duality",
+    name: "NYI",
     id: 13,
-    cost: new Decimal(2e10),
-    requirement: () => `Hadronize Lai'tela's Reality ${formatInt(12)} times`,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
     hasFailed: () => false,
-    checkRequirement: () => Laitela.hadronizes >= 12,
+    checkRequirement: () => false,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "Increase Dual Machine Cap based on Duality Upgrade purchases",
-    effect: () => player.disablePostReality ? 1 : 1 + DualityUpgrades.totalRebuyables / 20 + DualityUpgrades.totalSinglePurchase / 2,
-    formatEffect: value => `${formatX(value, 2, 2)}`
+    description: "NYI"
   },
   {
-    name: "Reminiscence of Corruption",
+    name: "NYI",
     id: 14,
-    cost: new Decimal(3e11),
-    requirement: () => `Reach a tickspeed of ${format("e1e666")}`,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
     hasFailed: () => false,
-    checkRequirement: () => Tickspeed.perSecond.log10().gte("1e666"),
+    checkRequirement: () => false,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: () => `Raise the Continuum Purchase boost to ${formatPow(1.2, 0, 1)}`,
-    effect: () => player.disablePostReality ? 1 : 1.2
+    description: "NYI"
   },
   {
-    name: "Invention of Duplexes",
+    name: "NYI",
     id: 15,
-    cost: new Decimal(1e12),
-    requirement: () => `Reach ${format("e5e55")} antimatter outside Pelle without ever having Infinity,
-      Time, or ${formatInt(8)}th Antimatter Dimensions this Endgame while Dilated`,
-    hasFailed: () => !player.requirementChecks.endgame.onlyLowDims || Pelle.isDoomed,
-    checkRequirement: () => player.requirementChecks.endgame.onlyLowDims && player.dilation.active &&
-      player.antimatter.add(1).log10().gte(5e55) && !Pelle.isDoomed,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
+    hasFailed: () => false,
+    checkRequirement: () => false,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    canLock: true,
-    description: "Unlock Hadrons",
+    description: "NYI"
   },
   {
-    name: "Critical Acceleration",
+    name: "NYI",
     id: 16,
-    cost: new Decimal(4e12),
-    requirement: () => "Have a fully empowered Hadron",
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
     hasFailed: () => false,
-    checkRequirement: () => Hadrons.timeFactor.times(4).gte(100),
+    checkRequirement: () => false,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "Unlock a 2nd Hadron effect",
+    description: "NYI"
   },
   {
-    name: "Prodigious Rotations",
+    name: "NYI",
     id: 17,
-    cost: new Decimal(9e12),
-    requirement: () => `Reach ${format("1e44875")} Singularities`,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
     hasFailed: () => false,
-    checkRequirement: () => player.celestials.laitela.singularities.gte("1e44875"),
-    checkEvent: GAME_EVENT.SINGULARITY_RESET_BEFORE,
-    description: "Unlock a 3rd Hadron effect",
+    checkRequirement: () => false,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    description: "NYI"
   },
   {
-    name: "Proportional Equilibrium",
+    name: "NYI",
     id: 18,
-    cost: new Decimal(1.6e13),
-    formatCost: x => format(x, 1),
-    requirement: () => `Have ${format(2.4e9, 1)} total Galaxies outside Pelle`,
-    hasFailed: () => Pelle.isDoomed,
-    checkRequirement: () => GalacticPowers.galacticAscension.isUnlocked ? Replicanti.galaxies.total.max(1).times(player.galaxies.max(1)).times(
-    player.dilation.totalTachyonGalaxies.max(1)).times(GalacticPower.freeGalaxies.max(1)).gte(2.4e9) : Replicanti.galaxies.total.add(player.galaxies).add(
-      player.dilation.totalTachyonGalaxies).add(GalacticPower.freeGalaxies).gte(2.4e9) && !Pelle.isDoomed,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
+    hasFailed: () => false,
+    checkRequirement: () => false,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "Unlock a 4th Hadron effect",
+    description: "NYI"
   },
   {
-    name: "Designated Emanation",
+    name: "NYI",
     id: 19,
-    cost: new Decimal(4.2e13),
-    formatCost: x => format(x, 1),
-    requirement: () => `Have ${format(1e45)} Tickspeed Continuum outside Pelle without ever having Time Studies in this Endgame`,
-    hasFailed: () => player.requirementChecks.endgame.maxStudies > 0 || Pelle.isDoomed,
-    checkRequirement: () => player.requirementChecks.endgame.maxStudies <= 0 &&
-      Tickspeed.continuumValue.gte(1e45) && !Pelle.isDoomed,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
+    hasFailed: () => false,
+    checkRequirement: () => false,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    canLock: true,
-    lockEvent: () => `purchase more than ${formatInt(0)} Time Studies`,
-    description: "Unlock Dark Hadrons"
+    description: "NYI"
   },
   {
-    name: "Binate Velocity",
+    name: "NYI",
     id: 20,
-    cost: new Decimal(1e16),
-    requirement: () => `Have a Continuum increase of at least ${formatX(4444444, 2, 2)}`,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
     hasFailed: () => false,
-    checkRequirement: () => Laitela.matterExtraPurchaseFactor >= 4444444,
+    checkRequirement: () => false,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: () => `Unlock Autobuyers for repeatable Duality Upgrades and generate Dual Machines
-      ${formatInt(10)} times faster`,
-    effect: () => player.disablePostReality ? 1 : 10
+    description: "NYI"
   },
   {
-    name: "Empyrean Eradication",
+    name: "NYI",
     id: 21,
-    cost: new Decimal(3e17),
-    requirement: () => `Reach ${format("e1e88")} antimatter outside Pelle with Continuum disabled for the entire Endgame`,
-    hasFailed: () => !player.requirementChecks.endgame.noContinuum || Pelle.isDoomed,
-    checkRequirement: () => player.requirementChecks.endgame.noContinuum &&
-      Currency.antimatter.value.add(1).log10().gte(1e88) && !Pelle.isDoomed,
-    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    canLock: true,
-    lockEvent: "enable Continuum",
-    description: "Dark Hadrons are more powerful based on Dual Machines",
-    effect: () => player.disablePostReality ? 0 : Decimal.log10(Currency.dualMachines.value.add(1)).div(100).toNumber(),
-    formatEffect: value => `+${formatPercents(value, 2, 2)}`
-  },
-  {
-    name: "Depiction Devastation",
-    id: 22,
-    cost: new Decimal(2e18),
-    requirement: () => `Reach ${format("e1e85")} antimatter outside Pelle without ever equipping Glyphs this Endgame`,
-    hasFailed: () => !player.requirementChecks.endgame.noGlyphs || Pelle.isDoomed,
-    checkRequirement: () => player.requirementChecks.endgame.noGlyphs &&
-      Currency.antimatter.value.add(1).log10().gte(1e85) && !Pelle.isDoomed,
-    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    canLock: true,
-    lockEvent: "equip Glyphs",
-    description: () => `Raise all Glyph Sacrifice values to ${formatPow(1.2, 2, 3)}`,
-    effect: () => player.disablePostReality ? 1 : 1.2
-  },
-  {
-    name: "Tetragrammatical Traumatization",
-    id: 23,
-    cost: new Decimal(6e18),
-    requirement: () => `Reach Glyph level ${formatInt(385000)} in Ra's Reality with
-      at most -15 Glyphs equipped`,
-    hasFailed: () => !Ra.isRunning ||
-      player.requirementChecks.reality.maxGlyphs > -15,
-    checkRequirement: () => Ra.isRunning &&
-      player.requirementChecks.reality.maxGlyphs <= -15 && gainedGlyphLevel().actualLevel.gte(385000),
-    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "Tesseracts increase Galaxy strength",
-    effect: () => player.disablePostReality ? 1 : Tesseracts.effectiveCount / 100,
-    formatEffect: value => `${formatX(value)}`
-  },
-  {
-    name: "Singularized Shattering",
-    id: 24,
-    cost: new Decimal(1.5e19),
-    formatCost: x => format(x, 1),
-    requirement: () => `Have ${format(106e6, 2, 2)} Antimatter Galaxies in Ra's Reality
-      with Celestial Matter toggled off`,
-    hasFailed: () => !Ra.isRunning || !player.requirementChecks.reality.noCelMatter,
-    checkRequirement: () => Ra.isRunning && player.requirementChecks.reality.noCelMatter &&
-      player.galaxies.gte(106e6),
-    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    canLock: true,
-    lockEvent: "turn on Celestial Matter",
-    description: "Singularities increase Galaxy strength",
-    effect: () => player.disablePostReality ? DC.D1 : Decimal.log10(player.celestials.laitela.singularities.add(1)).div(10000),
-    formatEffect: value => `${formatX(value, 2, 2)}`
-  },
-  {
-    name: "Polydimensional Production",
-    id: 25,
-    cost: new Decimal(1e20),
-    requirement: () => `Have ${formatInt(32)} fully empowered Dark Hadrons`,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
     hasFailed: () => false,
-    checkRequirement: () => player.celestials.laitela.hadrons.dark >= 32 && Hadrons.timeFactor.div(5).gte(100),
+    checkRequirement: () => false,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "Unlock Hypercubes",
-  },*/
+    description: "NYI"
+  },
+  {
+    name: "NYI",
+    id: 22,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
+    hasFailed: () => false,
+    checkRequirement: () => false,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    description: "NYI"
+  },
+  {
+    name: "NYI",
+    id: 23,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
+    hasFailed: () => false,
+    checkRequirement: () => false,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    description: "NYI"
+  },
+  {
+    name: "NYI",
+    id: 24,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
+    hasFailed: () => false,
+    checkRequirement: () => false,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    description: "NYI"
+  },
+  {
+    name: "NYI",
+    id: 25,
+    cost: new Decimal(Infinity),
+    requirement: () => `NYI`,
+    hasFailed: () => false,
+    checkRequirement: () => false,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    description: "NYI"
+  },
 ];
