@@ -15,6 +15,10 @@ export default {
       type: Boolean,
       required: true,
     },
+    isEterigary: {
+      type: Boolean,
+      required: true,
+    },
     isEndgame: {
       type: Boolean,
       required: true,
@@ -28,6 +32,7 @@ export default {
   computed: {
     upgradeStr() {
       if (this.isEndgame) return "Endgame Upgrade";
+      if (this.isEterigary) return "Eterigary Upgrade";
       return this.isImaginary ? "Imaginary Upgrade" : "Reality Upgrade";
     },
     lockEvent() {
