@@ -47,6 +47,28 @@ export const MachineHandler = {
 
   get baseIMCap() {
     if (Pelle.isDoomed) return new Decimal(1.6e15);
+    return Decimal.min((Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedRM.add(1).log10()).sub(1000), 0), 2).times(
+      Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedRM.add(1).log10()).sub(100000), 1), 0.2)).times(
+      Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedRM.add(1).log10()).div(1000000000), 1),
+      new Decimal(Decimal.log10(this.uncappedRM.add(1).log10())).div(7.5)))).pow(
+      new Decimal(Effects.product(EndgameMastery(144), Ra.unlocks.imaginaryMachines, Ra.unlocks.imaginaryMachineEternityPower)).times(
+      Decimal.max(Decimal.log10(this.uncappedRM.add(1).log10()).sub(45), 0).div(10).add(1))), this.hardcapIM);
+  },
+
+  get baseIMHardcap() {
+    return DC.E1000;
+  },
+
+  get baseHardcapIM() {
+    return this.baseIMHardcap;
+  },
+
+  get hardcapIM() {
+    return this.baseHardcapIM;
+  },
+
+  get uncappedIM() {
+    if (Pelle.isDoomed) return new Decimal(1.6e15);
     return (Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedRM.add(1).log10()).sub(1000), 0), 2).times(
       Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedRM.add(1).log10()).sub(100000), 1), 0.2)).times(
       Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedRM.add(1).log10()).div(1000000000), 1),
@@ -56,12 +78,12 @@ export const MachineHandler = {
   },
 
   get currentIMCap() {
-    return player.reality.iMCap.times(ImaginaryUpgrade(13).effectOrDefault(1));
+    return Decimal.min(player.reality.iMCap.times(ImaginaryUpgrade(13).effectOrDefault(1)), this.hardcapIM);
   },
 
   // This is iM cap based on in-game values at that instant, may be lower than the actual cap
   get projectedIMCap() {
-    return this.baseIMCap.times(ImaginaryUpgrade(13).effectOrDefault(1));
+    return Decimal.min(this.baseIMCap.times(ImaginaryUpgrade(13).effectOrDefault(1)), this.hardcapIM);
   },
 
   // Use iMCap to store the base cap; applying multipliers separately avoids some design issues the 3xTP upgrade has
@@ -93,5 +115,58 @@ export const MachineHandler = {
     // fixed interval the difference between current iM to max iM should decrease by a factor of 1/2.
     return Decimal.max(0, new Decimal(Decimal.log2(imCap.div(imCap.sub(cost)))).sub(
       Decimal.log2(imCap.div(imCap.sub(currentIM))))).times(this.scaleTimeForIM);
+  },
+
+  get isEMUnlocked() {
+    return Currency.eterigaryMachines.value.gte(this.hardcapIM) || Currency.eterigaryMachines.gt(0);
+  },
+
+  get baseEMCap() {
+    return Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1000), 0), 0.5).times(
+      Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(10000), 1), 0.5)).times(
+      Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(100000), 1), 0.5)).times(
+      Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1000000), 1), 0.75)).times(
+      Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1e9), 1), 1.25)).times(
+      Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1e12), 1), 2.25)).times(
+      Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1e15), 1), 4.25));
+  },
+
+  get currentEMCap() {
+    return player.reality.eMCap;
+  },
+
+  // This is eM cap based on in-game values at that instant, may be lower than the actual cap
+  get projectedEMCap() {
+    return this.baseEMCap;
+  },
+
+  // Use EMCap to store the base cap; applying multipliers separately avoids some design issues the 3xTP upgrade has
+  updateEMCap() {
+    if (this.uncappedIM.gte(this.baseIMCap)) {
+      if (this.baseEMCap.gt(player.reality.eMCap)) {
+        player.reality.eMCap = this.baseEMCap;
+      }
+    }
+  },
+
+  // Time in seconds to reduce the missing amount by a factor of two
+  get scaleTimeForEM() {
+    return 600;
+  },
+
+  gainedEterigaryMachines(diff) {
+    return (this.currentEMCap.sub(Currency.eterigaryMachines.value)).times(
+      new Decimal(1).sub(Decimal.pow(2, new Decimal(0).sub(diff).div(1000).div(this.scaleTimeForEM))));
+  },
+
+  estimateEMTimer(cost) {
+    const emCap = this.currentEMCap;
+    if (emCap.lte(cost)) return Infinity;
+    const currentEM = Currency.eterigaryMachines.value;
+    // This is doing log(a, 1/2) - log(b, 1/2) where a is % left to emCap of cost and b is % left to emCap of current
+    // eM. log(1 - x, 1/2) should be able to estimate the time taken for eM to increase from 0 to emCap * x since every
+    // fixed interval the difference between current eM to max eM should decrease by a factor of 1/2.
+    return Decimal.max(0, new Decimal(Decimal.log2(emCap.div(emCap.sub(cost)))).sub(
+      Decimal.log2(emCap.div(emCap.sub(currentEM))))).times(this.scaleTimeForEM);
   }
 };
