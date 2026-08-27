@@ -87,14 +87,15 @@ window.formatRarity = function formatRarity(value) {
 };
 
 // We assume 2/0, 2/2 decimal places to keep parameter count sensible; this is used very rarely
-window.formatMachines = function formatMachines(realPart, imagPart) {
+window.formatMachines = function formatMachines(realPart, imagPart, eterPart) {
   if (isEND()) return "END";
   const parts = [];
   if (Decimal.neq(realPart, 0)) parts.push(format(realPart, 2));
   if (Decimal.neq(imagPart, 0)) parts.push(`${format(imagPart, 2, 2)}i`);
+  if (Decimal.neq(eterPart, 0)) parts.push(`${format(eterPart, 2, 2)}ᖗ`);
   // This function is used for just RM and just iM in a few spots, so we have to push both parts conditionally
   // Nonetheless, we also need to special-case both zero so that it doesn't end up displaying as an empty string
-  if (Decimal.eq(realPart, 0) && Decimal.eq(imagPart, 0)) return format(0);
+  if (Decimal.eq(realPart, 0) && Decimal.eq(imagPart, 0) && Decimal.eq(eterPart, 0)) return format(0);
   return parts.join(" + ");
 };
 
