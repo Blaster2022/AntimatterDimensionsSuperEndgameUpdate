@@ -97,9 +97,11 @@ export default {
       return GameDatabase.celestials.descriptions[0].effects();
     },
     lastMachinesString() {
-      return this.lastMachines.lt(DC.E10000)
-        ? `${quantify("Reality Machine", this.lastMachines, 2)}`
-        : `${quantify("Imaginary Machine", this.lastMachines.dividedBy(DC.E10000), 2)}`;
+      return this.lastMachines.gte(DC.E20000)
+        ? `${quantify("Eterigary Machine", this.lastMachines.dividedBy(DC.E20000), 2)}`
+        : (this.lastMachines.lt(DC.E10000)
+          ? `${quantify("Reality Machine", this.lastMachines, 2)}`
+          : `${quantify("Imaginary Machine", this.lastMachines.dividedBy(DC.E10000), 2)}`);
     },
     unlockInfoTooltipArrowStyle() {
       return {
