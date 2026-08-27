@@ -136,7 +136,7 @@ class RebuyableEterigaryUpgradeState extends RebuyableMechanicState {
   }
 }
 
-DualityUpgradeState.index = mapGameData(
+EterigaryUpgradeState.index = mapGameData(
   GameDatabase.reality.eterigaryUpgrades,
   config => (config.id <= 10
     ? new RebuyableEterigaryUpgradeState(config)
