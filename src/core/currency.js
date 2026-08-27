@@ -623,3 +623,11 @@ Currency.etherealPower = new class extends DecimalCurrency {
     player.endgame.ethereal.power = newValue;
   }
 }();
+
+Currency.eterigaryMachines = new class extends DecimalCurrency {
+  get value() { return player.reality.eterigaryMachines; }
+  set value(value) {
+    const newValue = new Decimal(value);
+    player.reality.eterigaryMachines = Decimal.clampMax(newValue, MachineHandler.currentEMCap);
+  }
+}();
