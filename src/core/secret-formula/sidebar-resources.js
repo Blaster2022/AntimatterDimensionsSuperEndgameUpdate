@@ -96,7 +96,7 @@ export const sidebarResources = [
     isAvailable: () => MachineHandler.isIMUnlocked || PlayerProgress.endgameUnlocked(),
     // This is a dummy value to prevent vue errors
     value: () => Currency.realityMachines.value,
-    formatValue: () => formatMachines(Currency.realityMachines.value, Currency.imaginaryMachines.value, Currency.dualMachines.value),
+    formatValue: () => formatMachines(Currency.realityMachines.value, Currency.imaginaryMachines.value, Currency.eterigaryMachines.value),
     formatClass: "o-sidebar-currency--reality",
   },
   {
