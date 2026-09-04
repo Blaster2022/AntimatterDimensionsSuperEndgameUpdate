@@ -45,7 +45,7 @@ export const ra = {
       name: "Ra",
       color: "#9575cd",
       chunkGain: "Dimension Boosts",
-      memoryGain: "galaxies",
+      memoryGain: "Galaxies",
       requiredUnlock: () => Ra.unlocks.achievementMultPower,
       rawMemoryChunksPerSecond: () => 0.04 * Decimal.pow(DimBoost.totalBoosts.add(1).pLog10().div(10), 2.5).toNumber(),
       memoryProductionMultiplier: () => Ra.unlocks.raXP.effectOrDefault(1)
@@ -656,8 +656,8 @@ export const ra = {
     },
     laitelaXP: {
       id: 65,
-      reward: "All Memory Chunks produce more Memories based on Celestial Points",
-      effect: () => Math.pow(player.endgame.celestialPoints.add(1).log10().div(10).toNumber(), 0.2),
+      reward: "All Memory Chunks produce more Memories based on Singularities",
+      effect: () => Math.pow(player.celestials.laitela.singularities.add(1).log10().div(1000).toNumber(), 0.2),
       pet: "laitela",
       level: 5,
       displayIcon: `<span class="fab fa-galactic-senate"></span>`,
