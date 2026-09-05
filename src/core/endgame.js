@@ -11,9 +11,9 @@ export function isEndgameAvailable() {
   return player.endgame.expansionPacks.boughtPacks.has("pellePack") ? player.antimatter.add(1).log10().gte(9e15) : player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10().gte(9e15);
 }
 
-function updateEndgameRecords() {
-  const gainedCP = Pelle.isDoomed ? gainedCelestialPoints() : gainedCelestialPointsOutsideDoom();
-  const gainedDP = Pelle.isDoomed ? gainedDoomedParticles() : gainedDoomedParticlesOutsideDoom();
+function updateEndgameRecords(wasDoomed) {
+  const gainedCP = wasDoomed ? gainedCelestialPoints() : gainedCelestialPointsOutsideDoom();
+  const gainedDP = wasDoomed ? gainedDoomedParticles() : gainedDoomedParticlesOutsideDoom();
   player.records.bestEndgame.bestCPmin =
     player.records.bestEndgame.bestCPmin.max(player.records.thisEndgame.bestCPmin);
   player.records.bestEndgame.bestDPmin =
@@ -26,15 +26,15 @@ function updateEndgameRecords() {
   if (gainedDP.gt(player.records.permanent.maxDP)) player.records.permanent.maxDP = gainedDP;
 }
 
-function giveEndgameRewards() {
-  const gainedCP = Pelle.isDoomed ? gainedCelestialPoints() : gainedCelestialPointsOutsideDoom();
-  const gainedDP = Pelle.isDoomed ? gainedDoomedParticles() : gainedDoomedParticlesOutsideDoom();
+function giveEndgameRewards(wasDoomed) {
+  const gainedCP = wasDoomed ? gainedCelestialPoints() : gainedCelestialPointsOutsideDoom();
+  const gainedDP = wasDoomed ? gainedDoomedParticles() : gainedDoomedParticlesOutsideDoom();
   const endgameMultiplier = (ExpansionPack.enslavedPack.isBought
     ? Math.floor(1 + Math.pow(Math.log10(Math.min(Tesseracts.effectiveCount, 1000) * Math.max(Math.log10(Tesseracts.effectiveCount) - 2, 1) + 1), Math.log10(player.endgames + 1)))
     : 1);
   Currency.celestialPoints.add(gainedCP);
   Currency.doomedParticles.add(gainedDP);
-  updateEndgameRecords();
+  updateEndgameRecords(wasDoomed);
   player.endgames += endgameMultiplier;
   addEndgameTime(
     player.records.thisEndgame.time,
@@ -112,6 +112,7 @@ export const Endgame = {
     setTimeout(() => GameStorage.save(), 10000);
   },
   newEndgame() {
+    const wasDoomed = player.celestials.pelle.doomed;
     GameEnd.creditsClosed = false;
     GameEnd.creditsEverClosed = false;
     player.isGameEnd = false;
@@ -145,8 +146,8 @@ export const Endgame = {
 
     // Modify beaten-game quantities before doing a carryover reset
     if (player.antimatter.gte(DC.E9E15)) {
-      giveEndgameRewards();
-      updateEndgameRecords();
+      giveEndgameRewards(wasDoomed);
+      updateEndgameRecords(wasDoomed);
       GlyphAppearanceHandler.unlockSet();
     }
     if (player.endgame.respec) {
