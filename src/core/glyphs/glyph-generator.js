@@ -237,6 +237,7 @@ export const GlyphGenerator = {
   randomStrength(rng) {
     // Technically getting this upgrade really changes glyph gen but at this point almost all
     // the RNG is gone anyway.
+    if (Ra.unlocks.glyphRarityMaximum.isUnlocked) return Decimal.max(200, 100 + Ra.unlocks.rarityBuff.effectOrDefault(0))
     if (Ra.unlocks.maxGlyphRarityAndShardSacrificeBoost.canBeApplied) return rarityToStrength(100 + Ra.unlocks.rarityBuff.effectOrDefault(0));
     let result = GlyphGenerator.gaussianBellCurve(rng) * GlyphGenerator.strengthMultiplier;
     const relicShardFactor = Ra.unlocks.extraGlyphChoicesAndRelicShardRarityAlwaysMax.canBeApplied || EndgameMastery(53).isBought ? 1 : rng.uniform();
