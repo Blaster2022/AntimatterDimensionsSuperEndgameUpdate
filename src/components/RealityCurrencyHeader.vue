@@ -17,7 +17,9 @@ export default {
         this.currencyName = pluralize("Reality Shard", shards);
       } else {
         const rm = Currency.realityMachines.value;
-        this.currencyValue = formatMachines(rm, Currency.imaginaryMachines.value);
+        const im = Currency.imaginaryMachines.value;
+        const em = Currency.eterigaryMachines.value;
+        this.currencyValue = formatMachines(rm, im, em);
         this.currencyName = pluralize("Reality Machine", rm);
       }
     },
