@@ -78,6 +78,7 @@ export * from "./infinity-upgrades";
 export * from "./break-infinity-upgrades";
 export * from "./normal-challenges";
 export * from "./infinity-challenges";
+export * from "./eterigary-upgrades";
 export * from "./eternity";
 export * from "./eternity-challenge";
 export * from "./reality";
