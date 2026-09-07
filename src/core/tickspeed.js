@@ -62,6 +62,7 @@ export function getTickSpeedMultiplier() {
   if (Pelle.isDoomed && !PelleDestructionUpgrade.disableGalaxyNerf.isBought) galaxies = galaxies.times(0.5);
   if (Pelle.isDoomed && EndgameMilestone.remnantGalaxy.isReached) galaxies = galaxies.times(Decimal.pow(1 + Math.log10(Currency.remnants.value + 1), 0.5));
   if (GalacticPowers.galaxyStrength.isUnlocked) galaxies = galaxies.times(GalacticPowers.galaxyStrength.reward);
+  galaxies = galaxies.timesEffectOf(EterigaryUpgrade(9));
 
   galaxies = galaxies.times(Pelle.specialGlyphEffect.power);
   const perGalaxy = DC.D0_965;

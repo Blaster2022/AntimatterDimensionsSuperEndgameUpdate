@@ -60,7 +60,7 @@ export const MachineHandler = {
   },
 
   get baseHardcapIM() {
-    return this.baseIMHardcap;
+    return this.baseIMHardcap.times(EterigaryUpgrade(6).effectOrDefault(1))
   },
 
   get hardcapIM() {
