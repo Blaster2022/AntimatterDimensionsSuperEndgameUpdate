@@ -204,9 +204,19 @@ export const CelestialDimensions = {
    * @type {CelestialDimensionState[]}
    */
   all: CelestialDimension.index.compact(),
-  HARDCAP_PURCHASES: DC.C2P1024,
+  get HARDCAP_PURCHASES() {
+    return ImaginaryUpgrade(30).isBought ? new Decimal(Infinity) : DC.C2P1024;
+  },
   get SOFTCAP() {
     return DC.E100.timesEffectsOf(EndgameMastery(94), EndgameUpgrade(5)).times(Ethereal.sectorBoost);
+  },
+
+  get OVERFLOW() {
+    return DC.NUMMAX;
+  },
+
+  get OVERFLOW_MAG() {
+    return DC.E1.sub(Decimal.pow(player.records.totalCelMatter.add(1).log10().add(1).log10().sub(3).max(0).add(1), 1.25).sub(1)).max(1).toNumber();
   },
 
   get softcapPow() {
