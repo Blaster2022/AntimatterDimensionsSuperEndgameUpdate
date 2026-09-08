@@ -208,7 +208,8 @@ export const CelestialDimensions = {
     return ImaginaryUpgrade(30).isBought ? new Decimal(Infinity) : DC.C2P1024;
   },
   get SOFTCAP() {
-    return DC.E100.timesEffectsOf(EndgameMastery(94), EndgameUpgrade(5)).times(Ethereal.sectorBoost);
+    const base = DC.E100.timesEffectsOf(EndgameMastery(94), EndgameUpgrade(5)).times(Ethereal.sectorBoost);
+    return Decimal.min(base, DC.NUMMAX).times(Decimal.pow(base.div(DC.NUMMAX).max(1), 1 / CelestialDimensions.OVERFLOW_MAG));
   },
 
   get OVERFLOW() {
