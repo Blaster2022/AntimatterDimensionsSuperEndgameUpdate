@@ -727,6 +727,7 @@ export const Endgame = {
     if (Achievement(165).isUnlocked) {
       player.celestials.effarig.autoAdjustGlyphWeights = true;
     }
+    AutomatorBackend.restart();
   }
 };
 function lockAchievementsOnEndgame() {
