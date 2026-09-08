@@ -674,7 +674,7 @@ export const ra = {
     singularityBoost: {
       id: 67,
       reward: "Singularities are boosted based on Glyph Level",
-      effect: () => Decimal.pow(player.records.bestEndgame.glyphLevel, 10),
+      effect: () => Decimal.pow(player.records.bestEndgame.glyphLevel, 1000),
       pet: "laitela",
       level: 10,
       displayIcon: `<span class="fab fa-sith"></span>`,
@@ -682,8 +682,8 @@ export const ra = {
     },
     singularityExtraBoost: {
       id: 68,
-      reward: "Singularities are increased based on Game Speed",
-      effect: () => Decimal.pow(getGameSpeedupFactor(), 0.2),
+      reward: "Singularity gain is multiplied by Game Speed",
+      effect: () => getGameSpeedupFactor(),
       pet: "laitela",
       level: 15,
       displayIcon: `<span class="fab fa-rebel"></span>`,
