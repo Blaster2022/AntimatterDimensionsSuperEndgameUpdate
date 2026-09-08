@@ -404,9 +404,6 @@ export const imaginaryUpgrades = [
     hasFailed: () => !PelleStrikeUpgrade.pelleStrike1.isAvailableForPurchase,
     checkRequirement: () => PelleStrikeUpgrade.all.filter(u => u.isBought).length >= 5,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: () => {
-      if (ImaginaryUpgrade(30).isBought) return "Unlock Alpha, Celestial of Darkness";
-      return "Unlock ???, Celestial of ???";
-    },
+    description: "Uncap Celestial Matter"
   },
 ];
