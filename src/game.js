@@ -820,6 +820,7 @@ export function gameLoop(passedDiff, options = {}) {
   const afterOverflow = Decimal.pow(Decimal.max(uncapped.times(instability).div(CelestialDimensions.OVERFLOW), 1), 1 / CelestialDimensions.OVERFLOW_MAG);
   const totalPending = ImaginaryUpgrade(30).isBought ? beforeOverflow.times(afterOverflow) : Decimal.min(beforeOverflow.times(afterOverflow), DC.NUMMAX);
   player.endgame.celestialMatter = totalPending;
+  player.records.totalCelMatter = player.records.totalCelMatter.max(totalPending);
 
   let darkMatterProd = DC.D1;
   const unnerfedDM = player.celestials.laitela.unnerfedDarkMatter;
