@@ -340,6 +340,7 @@ window.player = {
     totalRealityAntimatter: DC.E1,
     totalEternityAntimatter: DC.E1,
     totalInfinityAntimatter: DC.E1,
+    totalCelMatter: DC.D0,
     recentInfinities: Array.range(0, 10).map(() =>
       [DC.BEMAX, Number.MAX_VALUE, DC.D1, DC.D1, ""]),
     recentEternities: Array.range(0, 10).map(() =>
