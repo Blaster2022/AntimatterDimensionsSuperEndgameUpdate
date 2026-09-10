@@ -77,7 +77,7 @@ export default {
         case "Ra":
           return false;
         case "Lai'tela":
-          return true;
+          return false;
         case "Pelle":
           return Math.min(Math.floor(this.level / 6), 4) !== Math.min(Math.floor((this.level + 1) / 6), 4);
         default:
@@ -99,7 +99,7 @@ export default {
         case "Ra":
           return "No resource boost (yet)";
         case "Lai'tela":
-          return "Unlock a new resource in Lai'tela's Alchemy";
+          return "No resource boost (yet)";
         case "Pelle":
           return "Unlock a new Galaxy Generator Upgrade";
         default:
