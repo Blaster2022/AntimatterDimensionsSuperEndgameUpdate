@@ -907,12 +907,6 @@ window.player = {
         galaxies: false
       },
       showBought: false,
-    },
-    alpha: {
-      unlockBits: 0,
-      run: false,
-      quoteBits: 0,
-      stage: 0
     }
   },
   endgames: 0,
@@ -1127,8 +1121,7 @@ window.player = {
       clearOnRestart: true,
     },
     invertTTgenDisplay: false,
-    autoRealityForFilter: false,
-    brightAlpha: false,
+    autoRealityForFilter: false
   },
   IAP: {
     enabled: false,
