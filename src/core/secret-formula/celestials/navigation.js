@@ -1904,7 +1904,7 @@ export const celestialNavigation = {
   },
 
   //Just Endgame stuff over here
-  "alpha-unlock": {
+  "uncap-cel-matter": {
     visible: () => PlayerProgress.endgameUnlocked(),
     complete: () => {
       if (ImaginaryUpgrade(30).isBought) return 1;
@@ -1991,7 +1991,7 @@ export const celestialNavigation = {
       pathStart: 0,
       pathEnd: 1,
       path: new LinearPath(Positions.pelleAchievementRequirement, Positions.celMatterUncap),
-      fill: "url(#gradPelleAlpha)",
+      fill: "url(#gradPelleCelMatter)",
       completeWidth: 6,
       incompleteWidth: 4,
     },
