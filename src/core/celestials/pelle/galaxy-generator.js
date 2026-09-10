@@ -29,17 +29,6 @@ export const GalaxyGenerator = {
     let extraGain = 1;
     if (EndgameMilestone.moreFasterGalaxies.isReached) extraGain = Decimal.pow(10, Math.min(Currency.endgames.value / 200, 50)).times(Decimal.pow(10, Math.max((Math.log10(Currency.endgames.value + 1) - 4) * 50, 0)));
     if (!Pelle.hasGalaxyGenerator) return new Decimal(0);
-    return new Decimal(GalaxyGeneratorUpgrades.additive.effectValue).timesEffectsOf(
-      GalaxyGeneratorUpgrades.multiplicative,
-      GalaxyGeneratorUpgrades.antimatterMult,
-      GalaxyGeneratorUpgrades.IPMult,
-      GalaxyGeneratorUpgrades.EPMult,
-      GalaxyGeneratorUpgrades.RSMult
-    ).times(extraGain);
-
-    let extraGain = 1;
-    if (EndgameMilestone.moreFasterGalaxies.isReached) extraGain = Decimal.pow(10, Math.min(Currency.endgames.value / 200, 50)).times(Decimal.pow(10, Math.max((Math.log10(Currency.endgames.value + 1) - 4) * 50, 0)));
-    if (!Pelle.hasGalaxyGenerator) return new Decimal(0);
     let galaxyGen = new Decimal(GalaxyGeneratorUpgrades.additive.effectValue).timesEffectsOf(
       GalaxyGeneratorUpgrades.multiplicative,
       GalaxyGeneratorUpgrades.antimatterMult,
