@@ -78,7 +78,7 @@ export const pelleGalaxyGeneratorUpgrades = {
       if (x > 20000) c = Decimal.pow10(2e10 * Math.pow(1.001, Math.max(x - 20000, 0)));
       return c;
     },
-    effect: x => Decimal.pow(2 ** (DivinityMilestone.firstDivine.isReached && !player.disablePostReality ? 2 : 1), x),
+    effect: x => Decimal.pow(2, x),
     formatEffect: x => formatX(x, 2),
     currency: () => Currency.dilatedTime,
     currencyLabel: "Dilated Time"
@@ -87,7 +87,7 @@ export const pelleGalaxyGeneratorUpgrades = {
     id: "galaxyGeneratorRemnantPow",
     description: "Empower Galaxy generation",
     cost: x => new Decimal(10).times(Decimal.pow10(x)),
-    effect: x => 1 + x / (DivinityMilestone.hadronEmpowerment.isReached ? 240 : 400),
+    effect: x => 1 + x / 400,
     formatEffect: x => formatPow(x, 2, 3),
     currency: () => Currency.remnants,
     currencyLabel: "Remnant"
