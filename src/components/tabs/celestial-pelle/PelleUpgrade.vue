@@ -93,7 +93,7 @@ export default {
       this.projectedTimeEstimate = TimeSpan
         .fromSeconds(this.secondsUntilRSCost(Pelle.nextRealityShardGain))
         .toTimeEstimate();
-      this.hasRemnants = Pelle.cel.remnants > 0;
+      this.hasRemnants = Pelle.cel.remnants.gt(0);
       this.galaxyCap = GalaxyGenerator.generationCap;
       const genDB = GameDatabase.celestials.pelle.galaxyGeneratorUpgrades;
       this.notAffordable = (this.config === genDB.additive || this.config === genDB.multiplicative) &&
