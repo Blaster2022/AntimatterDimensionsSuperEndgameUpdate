@@ -1436,36 +1436,92 @@ export const normalAchievements = [
     get reward() {
       return `Galaxies are ${formatPercents(0.1)} stronger.`;
     },
-    effect: 1.1
+    effect: () => player.disablePostReality ? 1 : 1.1
   },
   {
     id: 194,
+    name: "TIME. IS. RELATIVE.",
+    description: "Break Eternity.",
+    checkRequirement: () => player.break2,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER
+  },
+  {
+    id: 195,
+    name: "System Error",
+    description: "Endgame in under an hour.",
+    checkRequirement: () => player.records.bestEndgame.realTime < 3600000,
+    checkEvent: GAME_EVENT.ENDGAME_RESET_AFTER
+  },
+  {
+    id: 196,
     name: "At Long Last",
     description: "Regain all Achievements in Pelle.",
-    checkRequirement: () => PelleAchievementUpgrade.all.filter(u => u.isBought).length >= 33,
+    checkRequirement: () => PelleAchievementUpgrade.all.filter(u => u.canBeApplied).length >= 33,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     get reward() {
       return `You can equip up to ${formatInt(2)} Effarig and Reality Glyphs each.`;
     }
   },
   {
-    id: 195,
+    id: 197,
+    name: "Wait. That's illegal.",
+    get description() { return `Own a Reality Glyph of level ${formatInt(25001)} or higher.` },
+    checkRequirement: () => Glyphs.inventoryList.filter(g => g.type === 'reality' && g.level >= 25001).length > 0,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER
+  },
+  {
+    id: 198,
+    name: "...eons stacked on eons stacked on...",
+    get description() { return `Have a game speed of ${format(DC.NUMMAX, 1)} with Celestial Matter toggled off.` },
+    checkRequirement: () => getGameSpeedupForDisplay().gte(DC.NUMMAX) && player.endgame.celestialMatterMultiplier.isActive === false,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER
+  },
+  {
+    id: 201,
+    name: "A Newer Beginning",
+    description: "Begin generation of Galactic Power.",
+    checkRequirement: () => GalacticPower.isUnlocked,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER
+  },
+  {
+    id: 202,
+    name: "Reinstalled the game and rejoined the server... again",
+    description: "Have every Endgame Mastery at once.",
+    checkRequirement: () => player.endgameMasteries.masteries.length >= 39,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER
+  },
+  {
+    id: 203,
+    name: "Faster than a dilated potato",
+    get description() { return `Get more than ${formatPostBreak("ee29")} ticks per second.`; },
+    checkRequirement: () => Tickspeed.current.log10().lte(-1e29),
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER
+  },
+  {
+    id: 204,
     name: "Hard Reset",
     description: "Disable all Pelle Nerfs.",
-    checkRequirement: () => PelleAchievementUpgrade.all.filter(u => u.isBought).length >= 33 &&
-      PelleDestructionUpgrade.all.filter(u => u.isBought).length >= 50 &&
-      PelleRealityUpgrade.all.filter(u => u.isBought).length >= 20 &&
-      PelleImaginaryUpgrade.all.filter(u => u.isBought).length >= 19 &&
-      PelleCelestialUpgrade.all.filter(u => u.isBought).length >= 21 &&
-      PellePerkUpgrade.all.filter(u => u.isBought).length >= 29 &&
-      PelleAlchemyUpgrade.all.filter(u => u.isBought).length >= 21,
+    checkRequirement: () => PelleAchievementUpgrade.all.filter(u => u.canBeApplied).length >= 33 &&
+      PelleDestructionUpgrade.all.filter(u => u.canBeApplied).length >= 50 &&
+      PelleRealityUpgrade.all.filter(u => u.canBeApplied).length >= 20 &&
+      PelleImaginaryUpgrade.all.filter(u => u.canBeApplied).length >= 19 &&
+      PelleCelestialUpgrade.all.filter(u => u.canBeApplied).length >= 21 &&
+      PellePerkUpgrade.all.filter(u => u.canBeApplied).length >= 29 &&
+      PelleAlchemyUpgrade.all.filter(u => u.canBeApplied).length >= 21,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     get reward() {
       return `Unlock Strike Disabling.`;
     }
   },
   {
-    id: 196,
+    id: 205,
+    name: "Look to the Stars",
+    description: "Enter the Ethereal.",
+    checkRequirement: () => Ethereal.isUnlocked,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER
+  },
+  {
+    id: 206,
     name: "Full Control of the Dark",
     description: "Purchase the 8th Dark Matter Dimension.",
     checkRequirement: () => ImaginaryUpgrade(29).isBought,
@@ -1476,17 +1532,17 @@ export const normalAchievements = [
     effect: 2
   },
   {
-    id: 197,
+    id: 207,
     name: "Gone...",
     description: "Destroy Pelle.",
-    checkRequirement: () => PelleStrikeUpgrade.all.filter(u => u.isBought).length >= 5,
+    checkRequirement: () => PelleStrikeUpgrade.all.filter(u => u.canBeApplied).length >= 5,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     get reward() {
       return `Boost Celestial Point Gain.`;
     }
   },
   {
-    id: 198,
+    id: 208,
     name: "...But Not Forgotten",
     get description() { return `Reach ${format(DC.NUMMAX, 1, 0)} Imaginary Machines.` },
     checkRequirement: () => Currency.imaginaryMachines.value.gte(DC.NUMMAX),
