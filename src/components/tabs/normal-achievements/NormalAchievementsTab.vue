@@ -122,7 +122,7 @@ export default {
     },
     isObscured(row) {
       if (PlayerProgress.endgameUnlocked()) {
-        return row >= 19;
+        return row >= 20;
       }
       if (this.isDoomed && !PlayerProgress.endgameUnlocked()) {
         return row >= 18;
