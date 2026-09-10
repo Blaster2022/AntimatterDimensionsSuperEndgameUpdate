@@ -1,4 +1,3 @@
-import { Alpha } from "./alpha";
 import { Effarig } from "./effarig";
 import { Enslaved } from "./enslaved";
 import { Laitela } from "./laitela/laitela";
@@ -15,7 +14,6 @@ export const Celestials = {
   ra: Ra,
   laitela: Laitela,
   pelle: Pelle,
-  alpha: Alpha
 };
 
 GameDatabase.celestials.descriptions = [
@@ -110,19 +108,6 @@ GameDatabase.celestials.descriptions = [
       Destabilizing the Reality in less than ${formatInt(30)} seconds makes it become significantly more difficult,\
       in exchange for giving a much stronger reward.\
       Doing this ${formatInt(8)} times will also give a ${formatX(Math.pow(8, Laitela.hadronizes + 1))} to Dark Energy gain.`;
-    }
-  },
-  {
-    name: "Alpha",
-    effects() {
-      return `All rewards, effects, upgrades, enhancements, buffs, nerfs, and features unlocked or gained after reaching Reality
-      for the first time are disabled, except Celestial Dimensions and Cosmic Sector, both of which are severely nerfed.
-      The Celestial Matter Conversion Exponent will be reduced to ${format(Alpha.celestialMatterConversionNerf, 4, 4)} and
-      can be increased slightly by completing stages of Alpha's Reality. Your Cosmic Sector Reward will be rooted by your current
-      Cosmic Sector, which is a static nerf and cannot be increased through progression in Alpha.`;
-    },
-    description() {
-      return `You will exit Alpha's Reality when you complete a Layer of it for the first time.`;
     }
   }
 ];
