@@ -632,10 +632,10 @@ EventHub.logic.on(GAME_EVENT.GAME_TICK_AFTER, () => {
   if (Pelle.isDoomed && PelleDestructionUpgrade.disableGalaxyNerf.isBought) {
     Pelle.quotes.galaxyDebuffDisable.show();
   }
-  if (Pelle.isDoomed && Achievement(194).isUnlocked) {
+  if (Pelle.isDoomed && Achievement(196).isUnlocked) {
     Pelle.quotes.allPelleAchs.show();
   }
-  if (Pelle.isDoomed && Achievement(195).isUnlocked) {
+  if (Pelle.isDoomed && Achievement(204).isUnlocked) {
     Pelle.quotes.allPelleNerfs.show();
   }
 });
