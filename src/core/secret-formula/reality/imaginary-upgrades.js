@@ -404,6 +404,6 @@ export const imaginaryUpgrades = [
     hasFailed: () => !PelleStrikeUpgrade.pelleStrike1.isAvailableForPurchase,
     checkRequirement: () => PelleStrikeUpgrade.all.filter(u => u.isBought).length >= 5,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "Uncap Celestial Matter"
+    description: "Uncap Celestial Matter and Galactic Power"
   },
 ];
