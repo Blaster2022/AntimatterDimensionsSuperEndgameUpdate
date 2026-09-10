@@ -37,8 +37,8 @@ export default {
       if (this.machinesGained.eq(0) && this.newIMCap.eq(0)) {
         return `(Projected: ${format(this.projectedRM, 2)} RM)`;
       }
-      if (this.newIMCap.neq(0)) {
-        return `(iM Cap: ${formatMachines(0, this.newIMCap)})`;
+      if (this.newIMCap.neq(0) && this.newEMCap.eq(0)) {
+        return `(iM Cap: ${formatMachines(0, this.newIMCap, 0)})`;
       }
       if (this.newEMCap.neq(0)) {
         return `(ᖗM Cap: ${formatMachines(0, 0, this.newEMCap)})`;
