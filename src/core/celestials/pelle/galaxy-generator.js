@@ -36,6 +36,23 @@ export const GalaxyGenerator = {
       GalaxyGeneratorUpgrades.EPMult,
       GalaxyGeneratorUpgrades.RSMult
     ).times(extraGain);
+
+    let extraGain = 1;
+    if (EndgameMilestone.moreFasterGalaxies.isReached) extraGain = Decimal.pow(10, Math.min(Currency.endgames.value / 200, 50)).times(Decimal.pow(10, Math.max((Math.log10(Currency.endgames.value + 1) - 4) * 50, 0)));
+    if (!Pelle.hasGalaxyGenerator) return new Decimal(0);
+    let galaxyGen = new Decimal(GalaxyGeneratorUpgrades.additive.effectValue).timesEffectsOf(
+      GalaxyGeneratorUpgrades.multiplicative,
+      GalaxyGeneratorUpgrades.antimatterMult,
+      GalaxyGeneratorUpgrades.IPMult,
+      GalaxyGeneratorUpgrades.EPMult,
+      GalaxyGeneratorUpgrades.RSMult,
+      GalaxyGeneratorUpgrades.DTMult
+    ).times(extraGain).powEffectsOf(GalaxyGeneratorUpgrades.remnantPow, GalaxyGeneratorUpgrades.exponential);
+    if (galaxyGen.gt(10)) {
+      let logGal = galaxyGen.log10();
+      galaxyGen = Decimal.pow10(logGal.powEffectOf(GalaxyGeneratorUpgrades.superExponential));
+    }
+    return galaxyGen;
   },
 
   get galGenInstability() {
@@ -192,6 +209,64 @@ export class GalaxyGeneratorUpgrade extends RebuyableMechanicState {
 
   get effectValue() {
     return this.config.effect(this.boughtAmount);
+  }
+
+  purchase(bulk) {
+    if (!this.canBeBought) return false;
+    if (GameEnd.creditsEverClosed) return false;
+    let pending;
+    let upg = GalaxyGeneratorUpgrades.all.find(g => g.config.id === this.id);
+    let i;
+    for (let num = 0; num < 20; num++) {
+      if (GalaxyGeneratorUpgrades.all[num]) {
+        if (GalaxyGeneratorUpgrades.all[num].id === this.id) i = num;
+      }
+    }
+    let price;
+    let clicked = false;
+    let logC = [3, 10, 10, 100, 1000, 1e10, 1e100, 10, 1e100, 2];
+    let exD = [1/3, 0.1, 1e7, 20000, 10, 1e90, 1, 1, 1, 50];
+    let superScale = DC.E10000.div(exD[i]);
+    let currV = ((i >= 2 && i <= 4) || i === 9 ? upg.currency.value.max(1).log10().div(exD[i]) : upg.currency.value.div(exD[i]));
+    let currW = (i === 1
+      ? (currV.gte(superScale)
+         ? Decimal.sqrt(Decimal.log(currV.div(superScale).max(1), logC[i]).times(2).add(0.25)).sub(0.5).add(Decimal.log(superScale, logC[i]))
+         : Decimal.log(currV, logC[i]))
+      : ((i === 6 || i === 8)
+         ? Decimal.sqrt(Decimal.log(currV, logC[i]).times(2).add(0.25)).sub(0.5)
+         : Decimal.log(currV, logC[i])));
+    if (bulk) {
+      pending = Decimal.floor(currW).sub(player.celestials.pelle.rebuyables[this.id]);
+      player.celestials.pelle.rebuyables[this.id] +=
+        (i === 6 ? Math.min(Math.max(20000 - player.celestials.pelle.rebuyables["galaxyGeneratorDTMult"], 0), pending.toNumber()) : pending.toNumber());
+      if (player.celestials.pelle.rebuyables["galaxyGeneratorDTMult"] >= 20000) clicked = true;
+      if (i === 6 && clicked) {
+        let cos = upg.currency.value.max(1).log10().div(2e10);
+        let purs = Decimal.log(cos, 1.001);
+        let xs = purs.add(20000).toNumber();
+        let gain = xs - player.celestials.pelle.rebuyables[this.id];
+        player.celestials.pelle.rebuyables[this.id] += gain;
+      }
+      price = (i === 6 ? Math.min(player.celestials.pelle.rebuyables[this.id], 20000) : player.celestials.pelle.rebuyables[this.id]);
+      price = (i === 1
+        ? (new Decimal(price).gte(Decimal.log(superScale, logC[i]))
+           ? Decimal.pow(logC[i], new Decimal(price).sub(Decimal.log(superScale, logC[i])).add(0.5).pow(2).sub(0.25).div(2)).times(superScale)
+           : Decimal.pow(logC[i], price))
+        : ((i === 6 || i === 8)
+           ? Decimal.pow(logC[i], new Decimal(price).add(0.5).pow(2).sub(0.25).div(2))
+           : Decimal.pow(logC[i], price)));
+      price = ((i >= 2 && i <= 4) || i === 9 ? Decimal.pow10(price.times(exD[i])) : price.times(exD[i]));
+      if (i === 6 && clicked) {
+        price = Decimal.pow10(2e10 * Math.pow(1.001, Math.max(player.celestials.pelle.rebuyables[this.id] - 20000, 0)));
+      }
+      upg.currency.value = upg.currency.value.sub(price).max(0);
+    } else {
+      upg.currency.value = upg.currency.value.sub(upg.cost).max(0);
+      player.celestials.pelle.rebuyables[this.id]++;
+    }
+    this.onPurchased();
+    GameUI.update();
+    return true;
   }
 }
 
