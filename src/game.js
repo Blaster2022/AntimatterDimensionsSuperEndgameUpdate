@@ -1170,7 +1170,7 @@ export function getTTPerSecond() {
 export function gainedCelestialPoints() {
   if (!player.break2) return DC.D1;
   let cp = player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10().div(9e15);
-  if (Achievement(197).isUnlocked) {
+  if (Achievement(207).isUnlocked) {
     cp = cp.times(Decimal.max(9e115, player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10()).div(9e115));
   }
   cp = cp.powEffectsOf(Ra.unlocks.celPointBuff);
@@ -1180,7 +1180,7 @@ export function gainedCelestialPoints() {
 export function gainedCelestialPointsOutsideDoom() {
   if (!player.break2) return DC.D1;
   let cp = player.records.totalEndgameAntimatter.add(1).log10().div(9e15);
-  if (Achievement(197).isUnlocked) {
+  if (Achievement(207).isUnlocked) {
     cp = cp.times(Decimal.max(9e35, player.records.totalEndgameAntimatter.add(1).log10()).div(9e35));
   }
   cp = cp.pow(5);
