@@ -520,9 +520,12 @@ Currency.singularities = new class extends DecimalCurrency {
   }
 }();
 
-Currency.remnants = new class extends NumberCurrency {
+Currency.remnants = new class extends DecimalCurrency {
   get value() { return player.celestials.pelle.remnants; }
-  set value(value) { player.celestials.pelle.remnants = value; }
+  set value(value) {
+    const newValue = new Decimal(value);
+    player.celestials.pelle.remnants = newValue;
+  }
 }();
 
 Currency.realityShards = new class extends DecimalCurrency {
