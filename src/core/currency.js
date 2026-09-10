@@ -614,7 +614,7 @@ Currency.endgameSkills = new class extends DecimalCurrency {
 Currency.galacticPower = new class extends DecimalCurrency {
   get value() { return player.endgame.galacticPower; }
   set value(value) {
-    const newValue = Decimal.min(value, DC.NUMMAX);
+    const newValue = ImaginaryUpgrade(30).isBought ? new Decimal(value) : Decimal.min(value, DC.NUMMAX);
     player.endgame.galacticPower = newValue;
   }
 }();
