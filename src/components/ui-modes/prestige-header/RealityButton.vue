@@ -9,6 +9,7 @@ export default {
       machinesGained: new Decimal(),
       projectedRM: new Decimal(),
       newIMCap: new Decimal(),
+      newEMCap: new Decimal(),
       realityTime: 0,
       glyphLevel: 0,
       nextGlyphPercent: 0,
@@ -38,6 +39,9 @@ export default {
       }
       if (this.newIMCap.neq(0)) {
         return `(iM Cap: ${formatMachines(0, this.newIMCap)})`;
+      }
+      if (this.newEMCap.neq(0)) {
+        return `(ᖗM Cap: ${formatMachines(0, 0, this.newEMCap)})`;
       }
       if (this.machinesGained.lt(Number.MAX_VALUE)) {
         return `(${format(this.machinesGained.divide(this.realityTime), 2, 2)} RM/min)`;
@@ -93,6 +97,7 @@ export default {
       this.projectedRM = MachineHandler.gainedRealityMachines.times(multiplier)
         .clampMax(MachineHandler.hardcapRM);
       this.newIMCap.copyFrom(MachineHandler.projectedIMCap);
+      this.newEMCap.copyFrom(MachineHandler.projectedEMCap);
       this.machinesGained = this.projectedRM.clampMax(MachineHandler.distanceToRMCap);
       this.realityTime = Time.thisRealityRealTime.totalMinutes.toNumber();
       this.glyphLevel = gainedGlyphLevel().actualLevel;
