@@ -112,9 +112,6 @@ class ImaginaryUpgradeState extends BitPurchasableMechanicState {
     if (this.id === 25) {
       TabNotification.pelleUnlock.tryTrigger();
     }
-    if (this.id === 30) {
-      TabNotification.alphaUnlock.tryTrigger();
-    }
   }
 }
 
