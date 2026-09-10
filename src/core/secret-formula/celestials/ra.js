@@ -646,12 +646,12 @@ export const ra = {
       displayIcon: `<span class="fas fa-arrows-to-dot"></span>`,
       disabledByPelle: false,
     },
-    laitelaAlchemy: {
+    moreMilestones: {
       id: 64,
-      reward: "Unlock Lai'tela's Alchemy",
+      reward: "Unlock More Singularity Milestones",
       pet: "laitela",
       level: 2,
-      displayIcon: `<span class="fas fa-vial-virus"></span>`,
+      displayIcon: `<span class="fas fa-compress"></span>`,
       disabledByPelle: false,
     },
     laitelaXP: {
