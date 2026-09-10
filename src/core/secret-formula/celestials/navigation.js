@@ -120,7 +120,7 @@ const Positions = Object.freeze({
   pelleRecursion: pelleStarPosition(3, 150),
   pelleParadox: pelleStarPosition(4, 150),
 
-  alphaUnlock: new Vector(950, 800),
+  celMatterUncap: new Vector(950, 800),
 
   pelleGalaxyGen: pelleStarPosition(0, 0),
 });
@@ -1924,12 +1924,12 @@ export const celestialNavigation = {
       return Decimal.clampMax(0.25, Currency.realityMachines.value.add(1).pLog10().div(MachineHandler.baseRMCap.log10())).toNumber();
     },
     node: {
-      clickAction: () => Tab.celestials.alpha.show(true),
+      clickAction: () => Tab.dimensions.celestial.show(true),
       incompleteClass: "c-celestial-nav__test-incomplete",
-      symbol: "α",
+      symbol: "^",
       symbolOffset: "1.6",
       fill: "#00ff00",
-      position: Positions.alphaUnlock,
+      position: Positions.celMatterUncap,
       ring: {
         rMajor: 20,
       },
@@ -1938,18 +1938,17 @@ export const celestialNavigation = {
         text: complete => {
           if (complete === 1) {
             return [
-              "Alpha's Reality"
+              "Celestial Matter is Uncapped"
             ];
           }
           if (complete === 0.999) {
             return [
-              "Unlock Alpha",
-              "The Celestial of Darkness"
+              "Uncap Celestial Matter"
             ];
           }
           let pelleString = "Pelle's Doomed Reality is still intact";
           let progressString = "Disable more nerfs/Strikes to continue";
-          if (!Achievement(195).isUnlocked && !ImaginaryUpgrade(30).isAvailableForPurchase) {
+          if (!Achievement(204).isUnlocked && !ImaginaryUpgrade(30).isAvailableForPurchase) {
             const remainingNerfs = (PelleAchievementUpgrade.all.length + PelleDestructionUpgrade.all.length +
               PelleRealityUpgrade.all.length + PelleImaginaryUpgrade.all.length + PelleCelestialUpgrade.all.length +
               PellePerkUpgrade.all.length + PelleAlchemyUpgrade.all.length) - (PelleAchievementUpgrade.all.filter(u => u.isBought).length +
@@ -1958,7 +1957,7 @@ export const celestialNavigation = {
               PellePerkUpgrade.all.filter(u => u.isBought).length + PelleAchievementUpgrade.all.filter(u => u.isBought).length);
             pelleString = "Pelle's Doomed Reality is still intact";
             progressString = `${formatInt(remainingNerfs)} nerfs remain`;
-          } else if (Achievement(195).isUnlocked && !ImaginaryUpgrade(30).isAvailableForPurchase) {
+          } else if (Achievement(204).isUnlocked && !ImaginaryUpgrade(30).isAvailableForPurchase) {
             const hexString = ["starting to break", "breaking apart", "visibly breaking", "almost broken", "on the verge of breaking"];
             const remainingStrikes = PelleStrikeUpgrade.all.length - PelleStrikeUpgrade.all.filter(u => u.isBought).length;
             pelleString = "Pelle's Doomed Reality is " + hexString[5 - remainingStrikes];
@@ -1977,8 +1976,7 @@ export const celestialNavigation = {
             ];
           }
           return [
-            "Unlock ???",
-            "The Celestial of ???",
+            "???",
             `${format(Currency.imaginaryMachines.value, 2)} / ${format(Number.MAX_VALUE, 2)} iM`,
             pelleString,
             progressString
@@ -1992,7 +1990,7 @@ export const celestialNavigation = {
     connector: {
       pathStart: 0,
       pathEnd: 1,
-      path: new LinearPath(Positions.pelleAchievementRequirement, Positions.alphaUnlock),
+      path: new LinearPath(Positions.pelleAchievementRequirement, Positions.celMatterUncap),
       fill: "url(#gradPelleAlpha)",
       completeWidth: 6,
       incompleteWidth: 4,
