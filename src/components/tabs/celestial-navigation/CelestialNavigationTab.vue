@@ -342,7 +342,7 @@ const CelestialNavigationViewportCache = {
           />
         </linearGradient>
         <linearGradient
-          id="gradPelleAlpha"
+          id="gradPelleCelMatter"
           y2="0"
           x2="1"
           gradientUnits="userSpaceOnUse"
@@ -353,7 +353,7 @@ const CelestialNavigationViewportCache = {
           />
           <stop
             offset="1"
-            stop-color="#00ff00"
+            stop-color="#5151ec"
           />
         </linearGradient>
         <mask
