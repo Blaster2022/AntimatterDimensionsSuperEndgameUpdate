@@ -69,4 +69,45 @@ export const pelleGalaxyGeneratorUpgrades = {
     currency: () => Currency.realityShards,
     currencyLabel: "Reality Shard"
   }),
+  DTMult: rebuyable({
+    id: "galaxyGeneratorDTMult",
+    description: "Multiply Galaxy generation",
+    cost: x => {
+      let c = DC.D1;
+      if (x <= 20000) c = new Decimal(1e100).times(Decimal.pow(1e100, (Math.min(x, 20000)*(Math.min(x, 20000)+1)/2)+Math.min(x, 20000)));
+      if (x > 20000) c = Decimal.pow10(2e10 * Math.pow(1.001, Math.max(x - 20000, 0)));
+      return c;
+    },
+    effect: x => Decimal.pow(2 ** (DivinityMilestone.firstDivine.isReached && !player.disablePostReality ? 2 : 1), x),
+    formatEffect: x => formatX(x, 2),
+    currency: () => Currency.dilatedTime,
+    currencyLabel: "Dilated Time"
+  }),
+  remnantPow: rebuyable({
+    id: "galaxyGeneratorRemnantPow",
+    description: "Empower Galaxy generation",
+    cost: x => new Decimal(10).times(Decimal.pow10(x)),
+    effect: x => 1 + x / (DivinityMilestone.hadronEmpowerment.isReached ? 240 : 400),
+    formatEffect: x => formatPow(x, 2, 3),
+    currency: () => Currency.remnants,
+    currencyLabel: "Remnant"
+  }),
+  exponential: rebuyable({
+    id: "galaxyGeneratorExponential",
+    description: "Empower Galaxy generation",
+    cost: x => new Decimal(1e100).times(Decimal.pow(1e100, (x*(x+1)/2)+x)),
+    effect: x => 1 + x / 200,
+    formatEffect: x => formatPow(x, 2, 3),
+    currency: () => Currency.galaxyGeneratorGalaxies,
+    currencyLabel: "Galaxy"
+  }),
+  superExponential: rebuyable({
+    id: "galaxyGeneratorSuperExponential",
+    description: "Dilate Galaxy generation",
+    cost: x => Decimal.pow(1e100, Decimal.pow(2, x)),
+    effect: x => 1 + x / 1000,
+    formatEffect: x => formatPow(x, 2, 3),
+    currency: () => Currency.galaxyGeneratorGalaxies,
+    currencyLabel: "Galaxy"
+  })
 };
