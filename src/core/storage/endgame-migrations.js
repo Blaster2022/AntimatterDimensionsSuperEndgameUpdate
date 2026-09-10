@@ -55,4 +55,11 @@ export function endgameMigration(player) {
   if (player.endgame.doomedParticles.lt(0)) player.endgame.doomedParticles = new Decimal(0);
   player.celestials.v.runRecords = [DC.E1.neg(), DC.D0, DC.D0, DC.D0, DC.D0, DC.D0, DC.D0, DC.D0, DC.D0];
   player.endgameMasteries.preferredPaths = [[], []];
+  player.auto.galaxyGenerator = {
+    all: Array.range(0, 10).map(() => ({
+      isActive: false,
+      lastTick: 0,
+    })),
+    isActive: true,
+  }
 }
