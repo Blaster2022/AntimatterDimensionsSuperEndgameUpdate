@@ -122,7 +122,7 @@ class CelestialDimensionState extends DimensionState {
   }
 
   get purchaseCap() {
-    return DC.C2P1024;
+    return ImaginaryUpgrade(30).isBought ? new Decimal(Infinity) : DC.C2P1024;
   }
 
   get isCapped() {
