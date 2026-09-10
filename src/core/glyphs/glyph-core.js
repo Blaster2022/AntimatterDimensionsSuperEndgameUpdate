@@ -305,7 +305,7 @@ export const Glyphs = {
       sameSpecialTypeIndex = this.active.findIndex(x => x && x.type === glyph.type);
     }
     let maxSpecialGlyph = 1;
-    if (Achievement(194).isUnlocked) {
+    if (Achievement(196).isUnlocked) {
       maxSpecialGlyph = 2;
     }
     let specialGlyphEquipped = 0;
@@ -567,7 +567,7 @@ export const Glyphs = {
         (g.level >= glyph.level || g.strength >= glyph.strength) &&
         ((g.effects & glyph.effects) === glyph.effects));
     let maxSpecialGlyph = 1;
-    if (Achievement(194).isUnlocked) {
+    if (Achievement(196).isUnlocked) {
       maxSpecialGlyph = 2;
     }
     let compareThreshold = glyph.type === "effarig" || glyph.type === "reality" ? maxSpecialGlyph : Math.max(5, threshold);
