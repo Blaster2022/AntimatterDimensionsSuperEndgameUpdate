@@ -314,15 +314,4 @@ export const tabNotifications = {
     condition: () => Ethereal.isUnlocked,
     events: [GAME_EVENT.GAME_TICK_AFTER]
   },
-  alphaUnlock: {
-    id: 23,
-    tabsToHighLight: [
-      {
-        parent: "celestials",
-        tab: "alpha"
-      }
-    ],
-    // Always externally triggered
-    condition: () => true,
-  },
 };
