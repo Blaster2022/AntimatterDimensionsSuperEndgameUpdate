@@ -92,7 +92,7 @@ export default {
         }
       } else if (GalacticPower.isUnlocked && GalacticPower.nextPowerUnlockGP === undefined) {
         // Show all other goals from the top down, starting at features in the highest prestige layer
-        setProgress(Currency.imaginaryMachines.value, DC.NUMMAX, "Percentage to Alpha");
+        setProgress(Currency.imaginaryMachines.value, DC.NUMMAX, "Percentage to Uncapping Celestial Matter");
       } else if (GalacticPower.isUnlocked) {
         setProgress(Currency.galacticPower.value, GalacticPower.nextPowerUnlockGP, "Percentage to the next Galactic Power");
       } else if (Currency.antimatter.value.gte(DC.E9E15)) {
