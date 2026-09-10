@@ -23,8 +23,8 @@ export default {
       dilationMult: [1, 1, 1],
       milestoneMult: [1, 1, 1],
       hasMilestone: false,
-      remnants: 0,
-      remnantsGain: 0
+      remnants: new Decimal(0),
+      remnantsGain: new Decimal(0)
     };
   },
   computed: {
@@ -40,8 +40,8 @@ export default {
       this.dilationMult = PelleStrikes.dilation.hasStrike ? [500, 10, 5] : [1, 1, 1];
       this.milestoneMult = EndgameMilestone.remnantFormula.isReached ? [10000, 500, 25] : [1, 1, 1];
       this.hasMilestone = EndgameMilestone.remnantFormula.isReached;
-      this.remnants = Pelle.cel.remnants;
-      this.remnantsGain = Pelle.remnantsGain;
+      this.remnants.copyFrom(Pelle.cel.remnants);
+      this.remnantsGain.copyFrom(Pelle.remnantsGain);
     }
   }
 };
@@ -121,7 +121,7 @@ export default {
                 {{ format(remnants, 2, 0) }}
               </div>
               <div class="l-remnant-factors-item">
-                {{ format(remnantsGain, 2, remnantsGain >= 1 ? 0 : 2) }}
+                {{ format(remnantsGain, 2, remnantsGain.gte(1) ? 0 : 2) }}
               </div>
             </div>
           </div>
