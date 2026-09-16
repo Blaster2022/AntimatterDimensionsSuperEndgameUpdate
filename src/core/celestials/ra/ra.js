@@ -103,7 +103,8 @@ class RaPetState extends GameMechanicState {
   }
 
   get isCapped() {
-    return this.level >= Ra.levelCap;
+    return (this.id === "ra" || this.id === "laitela" || this.id === "pelle") ?
+      this.level >= Ra.biggerLevelCap : this.level >= Ra.levelCap;
   }
 
   get level() {
@@ -181,14 +182,14 @@ class RaPetState extends GameMechanicState {
   get memoryUpgradeCapped() {
     return this.memoryUpgradeCost >= 0.5 *
       ((this.id === "ra" || this.id === "laitela" || this.id === "pelle")
-       ? Ra.requiredMemoriesForLevelExtra(Ra.levelCap - 1)
+       ? Ra.requiredMemoriesForLevelExtra(Ra.biggerLevelCap - 1)
        : Ra.requiredMemoriesForLevel(Ra.levelCap - 1));
   }
 
   get chunkUpgradeCapped() {
     return this.chunkUpgradeCost >= 0.5 *
       ((this.id === "ra" || this.id === "laitela" || this.id === "pelle")
-       ? Ra.requiredMemoriesForLevelExtra(Ra.levelCap - 1)
+       ? Ra.requiredMemoriesForLevelExtra(Ra.biggerLevelCap - 1)
        : Ra.requiredMemoriesForLevel(Ra.levelCap - 1));
   }
 
@@ -303,7 +304,7 @@ export const Ra = {
     return Math.floor(Math.pow(adjustedLevel, 5.52) * post15Scaling * post25Scaling * 1e6);
   },
   requiredMemoriesForLevelExtra(level) {
-    if (level >= Ra.levelCap) return Infinity;
+    if (level >= Ra.biggerLevelCap) return Infinity;
     const adjustedLevel = level + Math.pow(level, 3) / 10;
     const post15Scaling = Math.pow(5, Math.max(0, level - 15));
     const post25Scaling = Math.pow(10 + Math.max(0, level - 25), 10 * Math.max(0, level - 25));
@@ -332,8 +333,12 @@ export const Ra = {
     if (!ExpansionPack.raPack.isBought) return 25;
     return Math.floor(Math.max(25, Decimal.log10(player.records.bestAntimatterExponentOutsideDoom).toNumber()));
   },
+  get biggerLevelCap() {
+    return 25;
+  },
   get maxTotalPetLevel() {
-    return this.levelCap * this.pets.all.length;
+    return this.levelCap * this.pets.all.countWhere(pet => pet.id !== "ra" && pet.id !== "laitela" && pet.id !== "pelle") +
+      this.biggerLevelCap * this.pets.all.countWhere(pet => pet.id === "ra" || pet.id === "laitela" || pet.id === "pelle");
   },
   checkForUnlocks() {
     if (!VUnlocks.raUnlock.canBeApplied && !EndgameMilestone.celestialEarlyUnlock.isReached) return;
