@@ -1173,7 +1173,7 @@ export function gainedCelestialPoints() {
   if (Achievement(207).isUnlocked) {
     cp = cp.times(Decimal.max(9e115, player.celestials.pelle.records.totalEndgameAntimatter.add(1).log10()).div(9e115));
   }
-  cp = cp.powEffectsOf(Ra.unlocks.celPointBuff);
+  cp = cp.powEffectsOf(Ra.unlocks.celPointBuff, SingularityMilestone.celPointBoost);
   return cp.floor();
 }
 
@@ -1184,7 +1184,7 @@ export function gainedCelestialPointsOutsideDoom() {
     cp = cp.times(Decimal.max(9e35, player.records.totalEndgameAntimatter.add(1).log10()).div(9e35));
   }
   cp = cp.pow(5);
-  cp = cp.powEffectsOf(Ra.unlocks.celPointBuff);
+  cp = cp.powEffectsOf(Ra.unlocks.celPointBuff, SingularityMilestone.celPointBoost);
   return cp.floor();
 }
 
