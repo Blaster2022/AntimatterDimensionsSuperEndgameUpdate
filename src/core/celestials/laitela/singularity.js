@@ -228,7 +228,7 @@ export const Singularity = {
     return Decimal.floor(Decimal.pow(this.gainPerCapIncrease, player.celestials.laitela.singularityCapIncreases).times(
       SingularityMilestone.singularityMult.effectOrDefault(new Decimal(1)).times(entropicCondensing)).timesEffectsOf(
       Ra.unlocks.singularityBoost, Ra.unlocks.singularityExtraBoost).times(EterigaryUpgrade(10).effectOrDefault(1)).powEffectsOf(
-      Ra.unlocks.singularityPower, SingularityMilestone.singularityPower));
+      Ra.unlocks.singularityPower, SingularityMilestone.singularityPower, SingularityMilestone.singBoostFromCosmicSector));
   },
 
   // Time (in seconds) to go from 0 DE to the condensing requirement
