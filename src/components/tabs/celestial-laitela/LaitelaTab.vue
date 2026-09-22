@@ -39,6 +39,7 @@ export default {
       darkMatterCap: new Decimal(0),
       softcap1: new Decimal(0),
       softcap2: new Decimal(0),
+      isUncapped: false
     };
   },
   computed: {
@@ -72,6 +73,7 @@ export default {
       this.darkMatterCap.copyFrom(Laitela.darkMatterCap);
       this.softcap1.copyFrom(Decimal.pow(10, 10000));
       this.softcap2.copyFrom(Decimal.pow(10, 100000));
+      this.isUncapped = SingularityMilestone.uncapDark.isUnlocked;
 
       const d1 = DarkMatterDimension(1);
       this.darkMatterGain = d1.amount.times(d1.powerDM).divide(d1.interval).times(1000);
@@ -139,7 +141,8 @@ export default {
       v-if="endgameUnlocked"
       class="o-laitela-matter-amount"
     >
-      Dark Matter is hardcapped at {{ format(darkMatterCap, 2) }}.
+      Dark Matter is <span v-if="isUncapped">harshly softcapped</span><span v-if="!isUncapped">hardcapped</span> at
+      {{ format(darkMatterCap, 2) }}.
     </div>
     <h2
       v-if="!singularitiesUnlocked"
