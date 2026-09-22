@@ -142,7 +142,8 @@ export default {
     // however; it looks better in-game if we just format it as Infinity instead, as the resource used for these costs
     // is itself hardcapped at e308 and we specifically want to format here (and nowhere else) as Infinity.
     formatDMCost(cost) {
-      return cost.gt(Laitela.darkMatterCap) ? Notations.current.infinite : format(cost, 2);
+      return (cost.gt(Laitela.darkMatterCap) && !SingularityMilestone.uncapDark.isUnlocked)
+        ? Notations.current.infinite : format(cost, 2);
     },
     dimensionProduction(tier) {
       if (tier === 8 && DarkMatterDimensions.highestUnlocked !== 8) return new Decimal(0);
