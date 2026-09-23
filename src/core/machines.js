@@ -124,13 +124,13 @@ export const MachineHandler = {
   },
 
   get baseEMCap() {
-    return Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1000), 0), 0.5).times(
+    return Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1000), 0), 0.75).times(
       Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(10000), 1), 0.5)).times(
       Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(100000), 1), 0.5)).times(
       Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1000000), 1), 0.75)).times(
       Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1e9), 1), 1.25)).times(
       Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1e12), 1), 2.25)).times(
-      Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1e15), 1), 4.25));
+      Decimal.pow(Decimal.clampMin(new Decimal(this.uncappedIM.add(1).log10()).sub(1e15), 1), 4));
   },
 
   get currentEMCap() {
