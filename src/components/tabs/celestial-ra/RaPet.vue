@@ -40,7 +40,12 @@ export default {
     };
   },
   computed: {
-    levelCap() { return Ra.levelCap; },
+    levelCap() {
+      if (this.pet.id === "teresa" || this.pet.id === "effarig" || this.pet.id === "enslaved" || this.pet.id === "v") {
+        return Ra.levelCap;
+      }
+      else return Ra.biggerLevelCap;
+    },
     showScalingUpgrade() {
       return this.petConfig.scalingUpgradeVisible(this.level);
     },
@@ -72,7 +77,7 @@ export default {
     update() {
       this.isRaCapped = Ra.totalPetLevel === Ra.maxTotalPetLevel;
       const pet = this.pet;
-      this.isCapped = pet.level === Ra.levelCap;
+      this.isCapped = pet.level === this.levelCap;
       this.isUnlocked = pet.isUnlocked;
       if (!this.isUnlocked) return;
       this.level = pet.level;
