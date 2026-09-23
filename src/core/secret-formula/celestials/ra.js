@@ -674,7 +674,7 @@ export const ra = {
     singularityBoost: {
       id: 67,
       reward: "Singularities are boosted based on Glyph Level",
-      effect: () => Decimal.pow(player.records.bestEndgame.glyphLevel, 1000),
+      effect: () => Decimal.pow(1.075, player.records.bestEndgame.glyphLevel),
       pet: "laitela",
       level: 10,
       displayIcon: `<span class="fab fa-sith"></span>`,
